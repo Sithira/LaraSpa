@@ -32,14 +32,14 @@ return [
     */
     'emails' => [
 
+        'enabled' => env('BASE_EMAILS_STATUS', true),
+
         'social_login' => [
-            'enabled' => true,
-            'email_type' => 'thank'
+            'enabled' => true
         ],
 
         'email_login' => [
-            'enabled' => true,
-            'email_type' => 'confirmation'
+            'enabled' => true
         ]
     ]
 ];

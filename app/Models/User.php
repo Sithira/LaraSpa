@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use App\Models\Scopes\ScopeIsActive;
-use Illuminate\Notifications\Notifiable;
+use App\Notifications\Users\Registration\ThankYouEmail;
+use App\Notifications\VerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable, HasApiTokens;
 
@@ -44,6 +46,21 @@ class User extends Authenticatable
         parent::__construct($attributes);
 
         self::addGlobalScope(new ScopeIsActive);
+    }
+
+    /**
+     *  Send the user verification post depends on the type
+     *  of the user's provider.
+     */
+    public function sendEmailVerificationNotification()
+    {
+        // check for the user provider
+        if ($this->provider != 'local') {
+            $this->notify(new ThankYouEmail);
+            return;
+        }
+
+        $this->notify(new VerifyEmail);
     }
 
 }

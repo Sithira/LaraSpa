@@ -10,6 +10,7 @@ namespace App\Auth;
 
 
 use Adaojunior\Passport\SocialUserResolverInterface;
+use App\Events\Registered;
 use App\Helpers\HTTPStatus;
 use App\Models\AuthProviders;
 use App\Models\User;
@@ -42,8 +43,7 @@ class SocialAccountResolver implements SocialUserResolverInterface
     private function getUserFromSocialProvider($provider, $token)
     {
 
-        if ($this->isProviderAvailable($provider))
-        {
+        if ($this->isProviderAvailable($provider)) {
             $social_user = Socialite::driver($provider)->userFromToken($token);
 
             return $this->findOrCreateUser($social_user, $provider);
@@ -59,26 +59,30 @@ class SocialAccountResolver implements SocialUserResolverInterface
      * @param $provider
      * @return User
      */
-    private function findOrCreateUser($user, $provider) : Model
+    private function findOrCreateUser($user, $provider): Model
     {
-        $user =  User::query()->firstOrCreate(['email' => $user->email], [
-            'email_verified_at' => now()->toDateTimeString(),
-            'provider_id' => $user->id,
-            'provider' => $provider,
-            'access_token' => $user->token,
-            'avatar' => $user->avatar,
-            'name' => $user->name,
-        ]);
 
-        if ($user instanceof User)
-        {
+        $auth_user = User::where('email', '=', $user->email)->first();
 
-            // todo: Fire created event for thanking for the registration.
+        if (is_null($auth_user)) {
 
-            return $user;
+            $auth_user = User::create([
+                'email_verified_at' => now()->toDateTimeString(),
+                'email' => $user->email,
+                'provider_id' => $user->id,
+                'provider' => $provider,
+                'access_token' => $user->token,
+                'avatar' => $user->avatar,
+                'name' => $user->name,
+            ]);
+
+            if ((boolean)config('base.emails.social_login.enabled')) {
+                event(new Registered($auth_user));
+            }
+
         }
 
-        return null;
+        return $auth_user;
     }
 
     /**
@@ -91,8 +95,7 @@ class SocialAccountResolver implements SocialUserResolverInterface
     {
 
         // check if the provider is null or not
-        if (is_null($provider))
-        {
+        if (is_null($provider)) {
             return false;
         }
 
@@ -103,8 +106,7 @@ class SocialAccountResolver implements SocialUserResolverInterface
         $auth_provider = AuthProviders::where('name', $provider)
             ->first();
 
-        if (is_null($auth_provider))
-        {
+        if (is_null($auth_provider)) {
             return false;
         }
 
