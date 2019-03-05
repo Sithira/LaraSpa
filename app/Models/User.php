@@ -54,13 +54,16 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function sendEmailVerificationNotification()
     {
-        // check for the user provider
-        if ($this->provider != 'local') {
+        // check for the user provider and the configurations
+        if ($this->provider != 'local' && (boolean)config('base.emails.social_login.enabled')) {
             $this->notify(new ThankYouEmail);
             return;
         }
 
-        $this->notify(new VerifyEmail);
+        if ((boolean)config(('base.emails.email_login.enabled'))) {
+            $this->notify(new VerifyEmail);
+        }
+
     }
 
 }

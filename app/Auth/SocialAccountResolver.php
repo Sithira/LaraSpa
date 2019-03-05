@@ -76,10 +76,14 @@ class SocialAccountResolver implements SocialUserResolverInterface
                 'name' => $user->name,
             ]);
 
-            if ((boolean)config('base.emails.social_login.enabled')) {
-                event(new Registered($auth_user));
-            }
-
+            // fire the user registered event.
+            event(new Registered($auth_user));
+        }
+        else
+        {
+            $auth_user->update([
+                'access_token' => $user->token
+            ]);
         }
 
         return $auth_user;
