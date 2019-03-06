@@ -18,7 +18,7 @@ class PublicEndPointController extends Controller
     public function version()
     {
         return response()->json([
-            "version" => config('base.version')
+            "version" => config('api.version')
         ]);
     }
 

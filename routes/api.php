@@ -17,9 +17,26 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/ping', function() {
+    return "pong";
+});
 
 Route::get('/version', 'Api\PublicEndPointController@version')
     ->name('version');
 
 Route::get('/providers', 'Api\PublicEndPointController@authProviders')
     ->name('providers');
+
+/*
+|--------------------------------------------------------------------------
+| API Routes For Versions
+|--------------------------------------------------------------------------
+| Dynamically load the apis to the application on loading.
+|
+*/
+Route::group([
+    'middleware' => ['api.v:1', 'auth:api'],
+    'prefix'     => 'v1',
+], function ($router) {
+    require base_path('routes/api_v1.php');
+});
