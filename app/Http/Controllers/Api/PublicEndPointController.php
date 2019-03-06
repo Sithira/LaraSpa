@@ -11,6 +11,18 @@ class PublicEndPointController extends Controller
 {
 
     /**
+     * Return the welcome message to the user
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function welcome()
+    {
+        return response()->json([
+            'message' => "Welcome to " . env('APP_NAME') . " api v" . config('api.version')
+        ]);
+    }
+
+    /**
      * Return the current version of the application.
      *
      * @return \Illuminate\Config\Repository|mixed

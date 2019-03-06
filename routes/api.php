@@ -17,9 +17,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/', 'Api\PublicEndPointController@welcome')
+    ->name('welcome');
+
 Route::get('/ping', function() {
     return "pong";
-});
+})->name('ping');
 
 Route::get('/version', 'Api\PublicEndPointController@version')
     ->name('version');
