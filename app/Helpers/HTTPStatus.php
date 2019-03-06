@@ -11,11 +11,15 @@ namespace App\Helpers;
 
 class HTTPStatus
 {
+    # Response Statuses
+
     const OK = "OK";
 
     const SUCCESS = "SUCCESS";
 
     const ERROR = "ERROR";
+
+    # Generic Responses
 
     const GENERIC_OK = [
         'status' => self::OK,
@@ -30,5 +34,12 @@ class HTTPStatus
     const GENERIC_DELETE = [
         'status' => self::OK,
         'message' => 'Resource successfully deleted.'
+    ];
+
+    # Exception Handling
+
+    const MODEL_NOT_FOUND_EXCEPTION = [
+        'status' => self::ERROR,
+        'message' => 'Requested resource not found.'
     ];
 }
