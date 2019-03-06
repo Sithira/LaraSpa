@@ -15,5 +15,20 @@ class HTTPStatus
 
     const SUCCESS = "SUCCESS";
 
-    const FAILED = "FAILED";
+    const ERROR = "ERROR";
+
+    const GENERIC_OK = [
+        'status' => self::OK,
+        'message' => 'Action performed successfully.'
+    ];
+
+    const GENERIC_ERROR = [
+        'status' => self::ERROR,
+        'message' => 'An error occurred while trying to perform the requested action.'
+    ];
+
+    const GENERIC_DELETE = [
+        'status' => self::OK,
+        'message' => 'Resource successfully deleted.'
+    ];
 }

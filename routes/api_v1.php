@@ -6,6 +6,4 @@
  * Time: 14:47
  */
 
-Route::group(['prefix' => 'users'], function () {
-    Route::get('/', 'Api\v1\UserController@index')->name('v1.users.index');
-});
+Route::apiResource('/users', 'Api\v1\UserController');

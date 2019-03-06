@@ -36,7 +36,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['daily'],
+            'channels' => ['daily'], // add/remove bugsnag from here if you want to remove bugsnag
             'ignore_exceptions' => false,
         ],
 
@@ -69,6 +69,10 @@ return [
                 'host' => env('PAPERTRAIL_URL'),
                 'port' => env('PAPERTRAIL_PORT'),
             ],
+        ],
+
+        'bugsnag' => [
+            'driver' => 'bugsnag',
         ],
 
         'stderr' => [
