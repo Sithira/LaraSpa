@@ -11,7 +11,7 @@ namespace App\Auth;
 
 use Adaojunior\Passport\SocialUserResolverInterface;
 use App\Events\Registered;
-use App\Helpers\HTTPStatus;
+use App\Helpers\HTTPMessages;
 use App\Models\AuthProviders;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
@@ -49,7 +49,7 @@ class SocialAccountResolver implements SocialUserResolverInterface
             return $this->findOrCreateUser($social_user, $provider);
         }
 
-        return response()->json(['status' => HTTPStatus::FAILED, 'message' => 'Requested provider disabled for not added yet']);
+        return response()->json(['status' => HTTPMessages::ERROR, 'message' => 'Requested provider disabled for not added yet']);
     }
 
     /**

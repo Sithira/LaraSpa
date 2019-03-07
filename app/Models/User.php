@@ -10,10 +10,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use Silber\Bouncer\Database\HasRolesAndAbilities;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable, HasApiTokens, SoftDeletes;
+    use Notifiable, HasApiTokens, SoftDeletes, HasRolesAndAbilities;
 
     /**
      * The attributes that are mass assignable.
@@ -65,6 +66,11 @@ class User extends Authenticatable implements MustVerifyEmail
             $this->notify(new VerifyEmail);
         }
 
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
     }
 
 }

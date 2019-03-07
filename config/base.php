@@ -2,6 +2,8 @@
 
 return [
 
+    'email_verification' => true,
+
     'authentication' => [
         'email' => true,
         'social' => true

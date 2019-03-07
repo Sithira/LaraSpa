@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\v1;
 
 
-use App\Helpers\HTTPStatus;
+use App\Helpers\HTTPMessages;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\v1\UserCollection;
 use App\Models\User;
@@ -38,7 +38,7 @@ class UserController extends Controller
             return api_resource('User')->make($user);
         }
 
-        return response()->json(HTTPStatus::GENERIC_ERROR);
+        return response()->json(HTTPMessages::GENERIC_ERROR);
     }
 
     /**
@@ -47,7 +47,7 @@ class UserController extends Controller
      * @param User $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(User $user) : \App\Http\Resources\v1\User
     {
         return api_resource('User')->make($user);
     }
@@ -69,20 +69,21 @@ class UserController extends Controller
             return api_resource('User')->make($user);
         }
 
-        return response()->json(HTTPStatus::GENERIC_ERROR);
+        return response()->json(HTTPMessages::GENERIC_ERROR);
 
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param User $user
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(User $user)
     {
         $user->delete();
 
-        response()->json(HTTPStatus::GENERIC_DELETE);
+        return response()->json(HTTPMessages::GENERIC_DELETE);
     }
 }

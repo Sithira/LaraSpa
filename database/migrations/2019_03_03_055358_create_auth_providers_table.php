@@ -19,6 +19,7 @@ class CreateAuthProvidersTable extends Migration
             $table->string('callback_url')->nullable();
             $table->boolean('is_active')->default(1);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

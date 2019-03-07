@@ -8,6 +8,8 @@ class UserRequest extends FormRequest
 {
     protected $rules = [
         'name' => 'required',
+        'email' => 'required|email|unique:users,email',
+        'password' => 'required|min:8'
     ];
 
     /**
@@ -29,16 +31,18 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        switch ($this->method()) {
+        switch (strtoupper($this->method())) {
             case "POST":
+            case "PUT":
 
                 break;
 
             case "PATCH":
 
-                break;
+                $user = $this->user();
 
-            case "PUT":
+                // add the ignore validation rule.
+                $this->rules['email'] .= ',' . $user->id;
 
                 break;
 

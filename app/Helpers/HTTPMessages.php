@@ -9,11 +9,9 @@
 namespace App\Helpers;
 
 
-class HTTPStatus
+class HTTPMessages
 {
     # Response Statuses
-
-    const OK = "OK";
 
     const SUCCESS = "SUCCESS";
 
@@ -21,8 +19,8 @@ class HTTPStatus
 
     # Generic Responses
 
-    const GENERIC_OK = [
-        'status' => self::OK,
+    const GENERIC_SUCCESS = [
+        'status' => self::SUCCESS,
         'message' => 'Action performed successfully.'
     ];
 
@@ -32,7 +30,7 @@ class HTTPStatus
     ];
 
     const GENERIC_DELETE = [
-        'status' => self::OK,
+        'status' => self::SUCCESS,
         'message' => 'Resource successfully deleted.'
     ];
 

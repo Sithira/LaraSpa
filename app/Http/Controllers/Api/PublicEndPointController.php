@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Helpers\HTTPStatus;
+use App\Helpers\HTTPMessages;
 use App\Models\AuthProviders;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -44,7 +44,7 @@ class PublicEndPointController extends Controller
         $providers = AuthProviders::select(['name', 'callback_url'])->get();
 
         return response()->json([
-            "status" => HTTPStatus::OK,
+            "status" => HTTPMessages::SUCCESS,
             "data" => $providers
         ]);
     }
