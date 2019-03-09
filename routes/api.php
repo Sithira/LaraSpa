@@ -30,6 +30,8 @@ Route::get('/version', 'Api\PublicEndPointController@version')
 Route::get('/providers', 'Api\PublicEndPointController@authProviders')
     ->name('providers');
 
+Route::post('/register', 'Auth\RegisterController@register');
+
 /*
 |--------------------------------------------------------------------------
 | API Routes For Versions
@@ -38,7 +40,7 @@ Route::get('/providers', 'Api\PublicEndPointController@authProviders')
 |
 */
 Route::group([
-    'middleware' => ['api.v:1', 'auth:api'],
+    'middleware' => ['api.v:1'],
     'prefix'     => 'v1',
 ], function ($router) {
     require base_path('routes/api_v1.php');

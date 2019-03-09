@@ -68,6 +68,21 @@ class User extends Authenticatable implements MustVerifyEmail
 
     }
 
+    /*-----------------------------------------------------------------------
+     * Model Specific Relationships
+     *-----------------------------------------------------------------------
+     *
+     * Set the model specific relationships
+     *
+     */
+
+    /*-----------------------------------------------------------------------
+     * Attribute Setters and Getters
+     *-----------------------------------------------------------------------
+     *
+     * Set the model specific attribute setters and getters
+     *
+     */
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);

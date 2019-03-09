@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\User;
+use App\Events\Registered;
+use App\Helpers\HTTPMethod;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Laravel\Passport\Client;
+use Route;
 
 class RegisterController extends Controller
 {
@@ -66,7 +70,62 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'password' => $data['password'],
+            'provider' => 'local'
         ]);
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        $user = $this->create($request->all());
+
+        // check if the request was sent from the apis
+        if (request()->wantsJson())
+        {
+
+            // get the activated client
+            $client = Client::where('password_client', 1)->first();
+
+            // add the client ids
+            $request->request->add([
+                'grant_type'    => 'password',
+                'client_id'     => $client->id,
+                'client_secret' => $client->secret,
+                'username'      => $request->get('email'),
+                'password'      => $request->get('password'),
+                'scope'         => ['*'],
+            ]);
+
+            $proxy = $request::create('oauth/token', HTTPMethod::POST);
+
+            return Route::dispatch($proxy);
+
+        }
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+            ?: redirect($this->redirectPath());
+    }
+
+
+    /**
+     * The user has been registered.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function registered(Request $request, $user)
+    {
+        event(new Registered($user));
     }
 }
