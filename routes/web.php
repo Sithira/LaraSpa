@@ -19,7 +19,7 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 
-Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
+Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider')->name('social-login');
 Route::get('oauth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
 // Todo - remove -> mail test-route
