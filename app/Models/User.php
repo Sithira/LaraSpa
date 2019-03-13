@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use App\Models\Scopes\ScopeIsActive;
-use App\Notifications\Users\Registration\ThankYouEmail;
-use App\Notifications\VerifyEmail;
+use App\Notifications\Users\Registration\ThankYouEmailNotification;
+use App\Notifications\Users\Registration\VerifyEmailNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -58,12 +58,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         // check for the user provider and the configurations
         if ($this->provider != 'local' && (boolean)config('base.emails.social_login.enabled')) {
-            $this->notify(new ThankYouEmail);
+            $this->notify(new ThankYouEmailNotification);
             return;
         }
 
         if ((boolean)config(('base.emails.email_login.enabled'))) {
-            $this->notify(new VerifyEmail);
+            $this->notify(new VerifyEmailNotification);
         }
 
     }

@@ -21,3 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('verified'
 
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('oauth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
+
+// Todo - remove -> mail test-route
+Route::get('test-mailable', function() {
+   return new \App\Mail\Users\Registration\VerifyEmail(\App\Models\User::find(1));
+});
