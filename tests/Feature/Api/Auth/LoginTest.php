@@ -10,6 +10,11 @@ use Tests\TestCase;
 class LoginTest extends TestCase
 {
 
+    /**
+     * Current urls for the social providers
+     *
+     * @var array
+     */
     public $socialLoginRedirects = [
         'facebook' => 'https://www.facebook.com/v3.0/dialog/oauth',
         'google' => 'https://accounts.google.com/o/oauth2/auth',
@@ -18,35 +23,9 @@ class LoginTest extends TestCase
     ];
 
     /**
-     * Test the local login
-     */
-    public function test_login_user_login_view()
-    {
-        $response = $this->get(route('login'));
-
-        $response->assertSuccessful();
-
-        $response->assertViewIs('auth.login');
-    }
-
-    /**
-     * Test a user login.
-     */
-    public function test_user_can_be_logged_in()
-    {
-
-        $user = factory(User::class)->create();
-
-        $response = $this->actingAs($user)->get(route('login'));
-
-        $response->assertRedirect('/home');
-
-    }
-
-    /**
      * Test a google user can login or not
      */
-    public function test_a_google_user_can_user()
+    public function test_a_google_user_can_login()
     {
         $providerMock = \Mockery::mock('Laravel\Socialite\Contracts\Provider');
 
@@ -74,5 +53,38 @@ class LoginTest extends TestCase
 
     }
 
+    /**
+     * Test local login for the system.
+     */
+    public function test_a_local_user_can_login_using_password()
+    {
+
+        $this->seed();
+
+        $this->artisan('passport:install');
+
+        $passport = \DB::table('oauth_clients')->where('id', '=', 2)->first();
+
+        $user = factory(User::class)->create();
+
+        $body = [
+            'grant_type' => 'password',
+            'client_id' => '2',
+            'client_secret' => $passport->secret,
+            'username' => $user->email,
+            'password' => 'password'
+        ];
+
+        $response = $this->postJson('oauth/token', $body);
+
+        $response->assertStatus(200);
+
+        $response->assertJsonStructure([
+            "access_token",
+            "token_type",
+            "refresh_token",
+            "expires_in"
+        ]);
+    }
 
 }
