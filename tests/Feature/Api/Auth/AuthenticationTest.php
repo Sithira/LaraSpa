@@ -7,7 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Socialite;
 use Tests\TestCase;
 
-class LoginTest extends TestCase
+class AuthenticationTest extends TestCase
 {
 
     /**
@@ -23,7 +23,7 @@ class LoginTest extends TestCase
     ];
 
     /**
-     * Test a google user can login or not
+     * @test Test a google user can login or not
      */
     public function test_a_google_user_can_login()
     {
@@ -54,7 +54,7 @@ class LoginTest extends TestCase
     }
 
     /**
-     * Test local login for the system.
+     * @test Test local login for the system.
      */
     public function test_a_local_user_can_login_using_password()
     {

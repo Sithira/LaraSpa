@@ -44,6 +44,11 @@ class UserRequest extends FormRequest
                 // add the ignore validation rule.
                 $this->rules['email'] .= ',' . $user->id;
 
+                if (!$this->has('password')) {
+                    $this->rules['password'] = null;
+                    unset($this->rules['password']);
+                }
+
                 break;
 
             default:
