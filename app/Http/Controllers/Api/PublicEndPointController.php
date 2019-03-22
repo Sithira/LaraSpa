@@ -25,12 +25,26 @@ class PublicEndPointController extends Controller
     /**
      * Return the current version of the application.
      *
-     * @return \Illuminate\Config\Repository|mixed
+     * @return \Illuminate\Http\JsonResponse
      */
     public function version()
     {
         return response()->json([
             "version" => config('api.version')
+        ]);
+    }
+
+    /**
+     * Return the application meta information.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getMeta()
+    {
+        return response()->json([
+            "data" => [
+                'name' => config("app.name", "My App Name")
+            ]
         ]);
     }
 

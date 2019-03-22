@@ -40,17 +40,7 @@ class AuthenticationTest extends TestCase
 
         $redirectLocation = $loginResponse->headers->get('Location');
 
-        $this->assertContains(
-            $this->socialLoginRedirects['google'],
-            $redirectLocation,
-            sprintf(
-                'The Social Login Redirect does not match the expected value for the provider %s. Expected to contain %s but got %s',
-                'google',
-                $this->socialLoginRedirects['google'],
-                $redirectLocation
-            )
-        );
-
+        $this->assertContains($this->socialLoginRedirects['google'], $redirectLocation);
     }
 
     /**
