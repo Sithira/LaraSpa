@@ -1,43 +1,72 @@
 <template>
     <div>
 
-        <div class="row">
+        <v-form @submit.prevent="authenticate">
+            <v-text-field
+                    label="Email"
+                    data-vv-name="username"
+                    v-model="credentials.username"
+            >
+            </v-text-field>
 
-            <div class="col-sm"></div>
+            <v-text-field
+                    label="Password"
+                    data-vv-name="password"
+                    v-model="credentials.password"
+                    type="password"
+            >
+            </v-text-field>
 
-            <div class="col-sm">
-                <div class="card">
-                    <div class="card-header">
-                        Login
-                    </div>
+            <v-btn
+                    color="success"
+                    type="submit"
+            >
+                Login
+            </v-btn>
 
-                    <div class="card-body">
-                        <form @submit.prevent="authenticate">
-                            <div class="form-group">
-                                <label for="username">Email</label>
-                                <input type="text" class="form-control" v-model="credentials.username" id="username"
-                                       name="username">
-                            </div>
+            <br />
 
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" v-model="credentials.password" class="form-control" id="password"
-                                       name="password">
-                            </div>
+            <v-btn color="primary" @click="socialiteAuthentication('google')">Google</v-btn>
 
-                            <div class="form-group">
-                                <input type="submit" class="btn btn-success btn-block" value="Login">
-                            </div>
-                        </form>
+        </v-form>
 
-                        <a href="javascript:void(0)" @click="socialiteAuthentication('google')" class="btn btn-primary">Google</a>
+        <!--<div class="row">-->
 
-                    </div>
-                </div>
-            </div>
+            <!--<div class="col-sm"></div>-->
 
-            <div class="col-sm"></div>
-        </div>
+            <!--<div class="col-sm">-->
+                <!--<div class="card">-->
+                    <!--<div class="card-header">-->
+                        <!--Login-->
+                    <!--</div>-->
+
+                    <!--<div class="card-body">-->
+                        <!--<form @submit.prevent="authenticate">-->
+                            <!--<div class="form-group">-->
+                                <!--<label for="username">Email</label>-->
+                                <!--<input type="text" class="form-control" v-model="credentials.username" id="username"-->
+                                       <!--name="username">-->
+                            <!--</div>-->
+
+                            <!--<div class="form-group">-->
+                                <!--<label for="password">Password</label>-->
+                                <!--<input type="password" v-model="credentials.password" class="form-control" id="password"-->
+                                       <!--name="password">-->
+                            <!--</div>-->
+
+                            <!--<div class="form-group">-->
+                                <!--<input type="submit" class="btn btn-success btn-block" value="Login">-->
+                            <!--</div>-->
+                        <!--</form>-->
+
+                        <!--<a href="javascript:void(0)" @click="socialiteAuthentication('google')" class="btn btn-primary">Google</a>-->
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="col-sm"></div>-->
+        <!--</div>-->
 
     </div>
 </template>

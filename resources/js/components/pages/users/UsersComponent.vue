@@ -2,37 +2,55 @@
     <div>
 
         <h3>Users in system</h3>
-        <div class="table-responsive">
 
-            <table class="table table-bordered">
+        <v-data-table
+                :headers="headers"
+                :items="users"
+                class="elevation-1"
+        >
 
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Provider</th>
-                        <th>Email</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
+            <template v-slot:items="props">
+                <td>{{ props.item.id }}</td>
+                <td>{{ props.item.name }}</td>
+                <td>{{ props.item.email }}</td>
+                <td>{{ props.item.provider }}</td>
+                <td>
+                    <v-btn class="primary" small :to="{ name: 'user', params: { id: props.item.id } }">View</v-btn>
+                </td>
+            </template>
 
-                <tbody>
-                    <tr v-for="user in users">
-                        <td>{{ user.id }}</td>
-                        <td>{{ user.name }}</td>
-                        <td>{{ user.provider || 'N/A' }}</td>
-                        <td>{{ user.email }}</td>
-                        <td>
-                            <router-link tag="a" class="btn btn-sm btn-primary" :to="{ name: 'user', params: { id: user.id } }">
-                                view
-                            </router-link>
-                        </td>
-                    </tr>
-                </tbody>
+        </v-data-table>
+        <!--<div class="table-responsive">-->
 
-            </table>
+            <!--<table class="table table-bordered">-->
 
-        </div>
+                <!--<thead>-->
+                    <!--<tr>-->
+                        <!--<th>#</th>-->
+                        <!--<th>Name</th>-->
+                        <!--<th>Provider</th>-->
+                        <!--<th>Email</th>-->
+                        <!--<th>Action</th>-->
+                    <!--</tr>-->
+                <!--</thead>-->
+
+                <!--<tbody>-->
+                    <!--<tr v-for="user in users">-->
+                        <!--<td>{{ user.id }}</td>-->
+                        <!--<td>{{ user.name }}</td>-->
+                        <!--<td>{{ user.provider || 'N/A' }}</td>-->
+                        <!--<td>{{ user.email }}</td>-->
+                        <!--<td>-->
+                            <!--<router-link tag="a" class="btn btn-sm btn-primary" :to="{ name: 'user', params: { id: user.id } }">-->
+                                <!--view-->
+                            <!--</router-link>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                <!--</tbody>-->
+
+            <!--</table>-->
+
+        <!--</div>-->
     </div>
 </template>
 
@@ -41,6 +59,21 @@
 
     export default {
         name: "users",
+
+        data() {
+
+            return {
+                headers: [
+                    { text: '# ID', value: 'id' },
+                    { text: 'Name', value: 'name' },
+                    { text: 'Email', value: 'email' },
+                    { text: 'Provider', value: 'provider' },
+                    { text: 'Actions', value: 'actions' }
+                ],
+            }
+
+        },
+
         computed: {
             ...mapGetters('users', [
                 'users',

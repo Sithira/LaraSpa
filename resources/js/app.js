@@ -5,9 +5,11 @@ require('./bootstrap');
 import App from './App.vue'
 import Vue from 'vue';
 import store from './store'
-
 import router from './router';
 import {TokenService} from "./services/token.service";
+
+require('./plugins/vuetify');
+
 
 // initialize the API service
 ApiService.init("http://localhost/laravel-socialite-passport-boilerplate/public");

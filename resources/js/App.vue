@@ -1,6 +1,6 @@
 <template>
 
-    <div>
+    <v-app>
 
         <div class="loading" v-if="isRequestPending">
             <half-circle-spinner
@@ -13,10 +13,13 @@
 
         <Header></Header>
 
-        <div class="container">
-            <router-view></router-view>
-        </div>
-    </div>
+        <v-content>
+            <v-container>
+                <router-view></router-view>
+            </v-container>
+        </v-content>
+
+    </v-app>
 
 </template>
 
