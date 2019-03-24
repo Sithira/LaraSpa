@@ -24,8 +24,10 @@
         "vue-template-compiler": "^2.6.9"
     },
     "dependencies": {
+        "epic-spinners": "^1.0.4",
         "sweetalert": "^2.1.2",
         "validate.js": "^0.12.0",
+        "vue-bootstrap-toasts": "^1.0.4",
         "vue-meta": "^1.5.8",
         "vue-router": "^3.0.2",
         "vuex": "^3.1.0"

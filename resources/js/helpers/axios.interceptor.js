@@ -1,6 +1,7 @@
 import axios from 'axios';
 import swal from 'sweetalert';
-import router from './../router'
+import router from './../router';
+import store from './../store';
 import {TokenService} from "../services/token.service";
 
 
@@ -9,7 +10,14 @@ import {TokenService} from "../services/token.service";
  *=================================
  */
 
-axios.interceptors.response.use(response => response, error => {
+axios.interceptors.response.use(response => {
+
+    store.dispatch('base/setRequestPendingStatus', false);
+
+    return response;
+}, error => {
+
+    store.dispatch('base/setRequestPendingStatus', false);
 
     const {status, data: {message}} = error.response;
 
@@ -21,7 +29,7 @@ axios.interceptors.response.use(response => response, error => {
             text: message || 'An error response occurred while requesting data from server.'
         }).then(() => {
 
-            router.go(-1);
+            //router.go(-1);
         });
 
         return Promise.reject(error);
@@ -34,6 +42,8 @@ axios.interceptors.response.use(response => response, error => {
  *=================================
  */
 axios.interceptors.request.use(function (request) {
+
+    store.dispatch('base/setRequestPendingStatus', true);
 
     const token = TokenService.getToken();
 
