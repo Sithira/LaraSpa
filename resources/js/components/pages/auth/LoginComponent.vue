@@ -29,6 +29,9 @@
                                 <input type="submit" class="btn btn-success btn-block" value="Login">
                             </div>
                         </form>
+
+                        <a href="javascript:void(0)" @click="socialiteAuthentication('google')" class="btn btn-primary">Google</a>
+
                     </div>
                 </div>
             </div>
@@ -58,13 +61,16 @@
             ...mapGetters('auth', [
                 'authenticating',
                 'authenticationError',
-                'authenticationErrorCode'
+                'authenticationErrorCode',
+                'currentUser'
             ])
         },
         methods: {
             ...mapActions('auth', [
-                'login'
+                'login',
+                'socialiteLogin'
             ]),
+
             async authenticate() {
 
                 if (this.credentials.email !== '' && this.credentials.password !== '') {
@@ -75,7 +81,35 @@
 
                 }
 
+            },
+
+            socialiteAuthentication(provider) {
+
+                axios.get(`login/${provider}`).then((response) => {
+
+                    window.location = response.data.data.url;
+
+                })
+
             }
+        },
+
+        beforeMount() {
+
+            const currentPath = this.$route.path;
+
+            if (currentPath === "/oauth/callback") {
+
+                const auth_data = JSON.parse(this.$route.query.data);
+
+                this.socialiteLogin(auth_data).then(function() {
+
+                    this.$router.push({name: 'dashboard'});
+
+                }.bind(this));
+
+            }
+
         }
     }
 </script>

@@ -24,6 +24,11 @@ const routes = [
         component: LoginComponent,
     },
     {
+        path: '/oauth/callback',
+        name: 'socialite-login',
+        component: LoginComponent
+    },
+    {
         path: '/register',
         name: 'register',
         component: RegisterComponent
@@ -59,6 +64,7 @@ const routes = [
 
 
 const router = new VueRouter({
+    base: 'laravel-socialite-passport-boilerplate/public',
     routes,
     mode: 'history'
 });

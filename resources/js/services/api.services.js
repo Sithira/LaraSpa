@@ -7,8 +7,7 @@ const ApiService = {
     _401interceptor: null,
 
     init(baseURL) {
-        //axios.defaults.baseURL = baseURL;
-
+        axios.defaults.baseURL = baseURL;
     },
 
     setHeader() {

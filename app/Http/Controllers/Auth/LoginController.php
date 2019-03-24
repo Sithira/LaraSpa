@@ -47,7 +47,13 @@ class LoginController extends Controller
      */
     public function redirectToProvider($provider)
     {
-        return Socialite::driver($provider)->redirect();
+        $target_url =  Socialite::driver($provider)->redirect()->getTargetUrl();
+
+        return response()->json([
+            'data' => [
+                'url' => $target_url
+            ]
+        ], 200);
     }
 
     /**
@@ -72,6 +78,8 @@ class LoginController extends Controller
             ]
         );
 
-        return app()->handle($proxy);
+        $response = app()->handle($proxy);
+
+        return redirect()->to(env("APP_URL")."/oauth/callback?data=" . $response->getContent());
     }
 }

@@ -10,7 +10,7 @@ import router from './router';
 import {TokenService} from "./services/token.service";
 
 // initialize the API service
-ApiService.init("http://laravel-spa.localhost");
+ApiService.init("http://localhost/laravel-socialite-passport-boilerplate/public");
 
 // check for the token and mount the interceptor.
 if (TokenService.getToken()) {

@@ -1957,6 +1957,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Login",
@@ -1968,8 +1971,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('auth', ['authenticating', 'authenticationError', 'authenticationErrorCode'])),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])('auth', ['login']), {
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('auth', ['authenticating', 'authenticationError', 'authenticationErrorCode', 'currentUser'])),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])('auth', ['login', 'socialiteLogin']), {
     authenticate: function () {
       var _authenticate = _asyncToGenerator(
       /*#__PURE__*/
@@ -2004,8 +2007,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       return authenticate;
-    }()
-  })
+    }(),
+    socialiteAuthentication: function socialiteAuthentication(provider) {
+      axios.get("login/".concat(provider)).then(function (response) {
+        window.location = response.data.data.url;
+      });
+    }
+  }),
+  beforeMount: function beforeMount() {
+    var currentPath = this.$route.path;
+
+    if (currentPath === "/oauth/callback") {
+      var auth_data = JSON.parse(this.$route.query.data);
+      this.socialiteLogin(auth_data).then(function () {
+        this.$router.push({
+          name: 'dashboard'
+        });
+      }.bind(this));
+    }
+  }
 });
 
 /***/ }),
@@ -44386,6 +44406,20 @@ var render = function() {
                 _vm._v(" "),
                 _vm._m(0)
               ]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { href: "javascript:void(0)" },
+                on: {
+                  click: function($event) {
+                    return _vm.socialiteAuthentication("google")
+                  }
+                }
+              },
+              [_vm._v("Google")]
             )
           ])
         ])
@@ -60690,7 +60724,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
  // initialize the API service
 
-_services_api_services__WEBPACK_IMPORTED_MODULE_0__["default"].init("http://laravel-spa.localhost"); // check for the token and mount the interceptor.
+_services_api_services__WEBPACK_IMPORTED_MODULE_0__["default"].init("http://localhost/laravel-socialite-passport-boilerplate/public"); // check for the token and mount the interceptor.
 
 if (_services_token_service__WEBPACK_IMPORTED_MODULE_5__["TokenService"].getToken()) {
   _services_api_services__WEBPACK_IMPORTED_MODULE_0__["default"].setHeader();
@@ -61395,6 +61429,10 @@ var routes = [{
   name: 'login',
   component: _components_pages_Auth_LoginComponent__WEBPACK_IMPORTED_MODULE_4__["default"]
 }, {
+  path: '/oauth/callback',
+  name: 'socialite-login',
+  component: _components_pages_Auth_LoginComponent__WEBPACK_IMPORTED_MODULE_4__["default"]
+}, {
   path: '/register',
   name: 'register',
   component: _components_pages_Auth_RegisterComponent__WEBPACK_IMPORTED_MODULE_5__["default"]
@@ -61422,6 +61460,7 @@ var routes = [{
   }
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
+  base: 'laravel-socialite-passport-boilerplate/public',
   routes: routes,
   mode: 'history'
 });
@@ -61469,7 +61508,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var ApiService = {
   _401interceptor: null,
-  init: function init(baseURL) {//axios.defaults.baseURL = baseURL;
+  init: function init(baseURL) {
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.defaults.baseURL = baseURL;
   },
   setHeader: function setHeader() {
     axios__WEBPACK_IMPORTED_MODULE_1___default.a.defaults.headers.common["Authorization"] = "Bearer ".concat(_services_token_service__WEBPACK_IMPORTED_MODULE_3__["TokenService"].getToken());
@@ -61720,19 +61760,51 @@ var AuthService = {
 
     return login;
   }(),
-  register: function () {
-    var _register = _asyncToGenerator(
+  socialiteLogin: function () {
+    var _socialiteLogin = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(data) {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
+              _token_service__WEBPACK_IMPORTED_MODULE_2__["TokenService"].saveToken(data.access_token);
+              _token_service__WEBPACK_IMPORTED_MODULE_2__["TokenService"].saveRefreshToken(data.refresh_token);
+              _api_services__WEBPACK_IMPORTED_MODULE_1__["default"].setHeader();
+              _api_services__WEBPACK_IMPORTED_MODULE_1__["default"].mount401Interceptor();
+              _context2.next = 6;
+              return AuthService.getLoggedInUser();
+
+            case 6:
+              return _context2.abrupt("return", data.access_token);
+
+            case 7:
             case "end":
               return _context2.stop();
           }
         }
       }, _callee2);
+    }));
+
+    function socialiteLogin(_x2) {
+      return _socialiteLogin.apply(this, arguments);
+    }
+
+    return socialiteLogin;
+  }(),
+  register: function () {
+    var _register = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
     }));
 
     function register() {
@@ -61750,33 +61822,33 @@ var AuthService = {
   getLoggedInUser: function () {
     var _getLoggedInUser = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
       var user;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
         while (1) {
-          switch (_context3.prev = _context3.next) {
+          switch (_context4.prev = _context4.next) {
             case 0:
-              _context3.prev = 0;
-              _context3.next = 3;
+              _context4.prev = 0;
+              _context4.next = 3;
               return _api_services__WEBPACK_IMPORTED_MODULE_1__["default"].get('/api/user');
 
             case 3:
-              user = _context3.sent;
+              user = _context4.sent;
               _token_service__WEBPACK_IMPORTED_MODULE_2__["TokenService"].saveUserObject(user.data);
               _store__WEBPACK_IMPORTED_MODULE_3__["default"].dispatch('auth/saveUser', user.data);
-              return _context3.abrupt("return", user.data);
+              return _context4.abrupt("return", user.data);
 
             case 9:
-              _context3.prev = 9;
-              _context3.t0 = _context3["catch"](0);
-              throw new AuthenticationError(_context3.t0.response.status, _context3.t0.response.data.message);
+              _context4.prev = 9;
+              _context4.t0 = _context4["catch"](0);
+              throw new AuthenticationError(_context4.t0.response.status, _context4.t0.response.data.message);
 
             case 12:
             case "end":
-              return _context3.stop();
+              return _context4.stop();
           }
         }
-      }, _callee3, null, [[0, 9]]);
+      }, _callee4, null, [[0, 9]]);
     }));
 
     function getLoggedInUser() {
@@ -61792,11 +61864,11 @@ var AuthService = {
   refreshToken: function () {
     var _refreshToken = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
       var refreshToken, requestData, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
         while (1) {
-          switch (_context4.prev = _context4.next) {
+          switch (_context5.prev = _context5.next) {
             case 0:
               refreshToken = _token_service__WEBPACK_IMPORTED_MODULE_2__["TokenService"].getRefreshToken();
               requestData = {
@@ -61809,29 +61881,29 @@ var AuthService = {
                   client_secret: 'DYyKJzcPSmDAlBqP0Ijm7F49Ktv5m5bttF2v7xnr'
                 }
               };
-              _context4.prev = 2;
-              _context4.next = 5;
+              _context5.prev = 2;
+              _context5.next = 5;
               return _api_services__WEBPACK_IMPORTED_MODULE_1__["default"].customRequest(requestData);
 
             case 5:
-              response = _context4.sent;
+              response = _context5.sent;
               _token_service__WEBPACK_IMPORTED_MODULE_2__["TokenService"].saveToken(response.data.access_token);
               _token_service__WEBPACK_IMPORTED_MODULE_2__["TokenService"].saveRefreshToken(response.data.refresh_token); // Update the header in ApiService
 
               _api_services__WEBPACK_IMPORTED_MODULE_1__["default"].setHeader();
-              return _context4.abrupt("return", response.data.access_token);
+              return _context5.abrupt("return", response.data.access_token);
 
             case 12:
-              _context4.prev = 12;
-              _context4.t0 = _context4["catch"](2);
-              throw new AuthenticationError(_context4.t0.response.status, _context4.t0.response.data.detail);
+              _context5.prev = 12;
+              _context5.t0 = _context5["catch"](2);
+              throw new AuthenticationError(_context5.t0.response.status, _context5.t0.response.data.detail);
 
             case 15:
             case "end":
-              return _context4.stop();
+              return _context5.stop();
           }
         }
-      }, _callee4, null, [[2, 12]]);
+      }, _callee5, null, [[2, 12]]);
     }));
 
     function refreshToken() {
@@ -62071,25 +62143,56 @@ var actions = {
 
     return login;
   }(),
-  saveUser: function saveUser(_ref3, o) {
-    var commit = _ref3.commit;
+  socialiteLogin: function () {
+    var _socialiteLogin = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(_ref3, data) {
+      var commit, token;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              commit = _ref3.commit;
+              _context2.next = 3;
+              return _services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"].socialiteLogin(data);
+
+            case 3:
+              token = _context2.sent;
+              commit('loginSuccess', token);
+
+            case 5:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    function socialiteLogin(_x3, _x4) {
+      return _socialiteLogin.apply(this, arguments);
+    }
+
+    return socialiteLogin;
+  }(),
+  saveUser: function saveUser(_ref4, o) {
+    var commit = _ref4.commit;
     commit('saveUser', o);
   },
-  logout: function logout(_ref4) {
-    var commit = _ref4.commit;
+  logout: function logout(_ref5) {
+    var commit = _ref5.commit;
     _services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"].logout();
     commit('logoutSuccess');
   },
   refreshToken: function () {
     var _refreshToken = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(_ref5) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref6) {
       var commit, state, token;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
         while (1) {
-          switch (_context2.prev = _context2.next) {
+          switch (_context3.prev = _context3.next) {
             case 0:
-              commit = _ref5.commit, state = _ref5.state;
+              commit = _ref6.commit, state = _ref6.state;
               console.log('RefreshToken', 'CALLED !'); // If this is the first time the refreshToken has been called, make a request
               // otherwise return the same promise to the caller
 
@@ -62106,17 +62209,17 @@ var actions = {
                 });
               }
 
-              return _context2.abrupt("return", state.refreshTokenPromise);
+              return _context3.abrupt("return", state.refreshTokenPromise);
 
             case 4:
             case "end":
-              return _context2.stop();
+              return _context3.stop();
           }
         }
-      }, _callee2);
+      }, _callee3);
     }));
 
-    function refreshToken(_x3) {
+    function refreshToken(_x5) {
       return _refreshToken.apply(this, arguments);
     }
 

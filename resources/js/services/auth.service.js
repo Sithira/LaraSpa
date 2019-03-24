@@ -56,6 +56,21 @@ const AuthService = {
         }
     },
 
+    async socialiteLogin(data) {
+
+        TokenService.saveToken(data.access_token);
+
+        TokenService.saveRefreshToken(data.refresh_token);
+
+        ApiService.setHeader();
+
+        ApiService.mount401Interceptor();
+
+        await AuthService.getLoggedInUser();
+
+        return data.access_token;
+    },
+
     async register() {
 
     },

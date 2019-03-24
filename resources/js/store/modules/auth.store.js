@@ -89,6 +89,13 @@ const actions = {
         }
     },
 
+    async socialiteLogin({commit}, data) {
+
+        const token = await AuthService.socialiteLogin(data);
+
+        commit('loginSuccess', token);
+    },
+
     saveUser({commit}, o) {
         commit('saveUser',o);
     },
