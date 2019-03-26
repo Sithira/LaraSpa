@@ -1,18 +1,13 @@
-import ApiService from "./services/api.services";
+import ApiService from "./portal/services/api.services";
 
-require('./bootstrap');
+require('./portal/bootstrap');
 
-import App from './App.vue'
+import AppAdmin from './portal/AppAdmin.vue'
 import Vue from 'vue';
-import store from './store'
-import router from './router';
-import {TokenService} from "./services/token.service";
+import store from './portal/store'
+import router from './portal/router';
+import {TokenService} from "./portal/services/token.service";
 
-require('./plugins/vuetify');
-
-
-// initialize the API service
-ApiService.init("http://localhost/laravel-socialite-passport-boilerplate/public");
 
 // check for the token and mount the interceptor.
 if (TokenService.getToken()) {
@@ -20,11 +15,30 @@ if (TokenService.getToken()) {
     ApiService.mount401Interceptor();
 }
 
-const app = new Vue({
-    el: '#app',
-    store,
-    router,
-    components: {
-        App
-    }
-});
+if (window.location.href.indexOf("admin") > -1) {
+
+    require('./portal/plugins/vuetify');
+
+    // initialize the API service
+    ApiService.init("http://localhost/laravel-socialite-passport-boilerplate/public");
+
+    const app = new Vue({
+        el: '#app',
+        store,
+        router,
+        components: {
+            AppAdmin
+        }
+    });
+
+}
+else {
+    const app = new Vue({
+        el: '#app',
+        store,
+        router,
+        components: {
+            AppAdmin
+        }
+    });
+}

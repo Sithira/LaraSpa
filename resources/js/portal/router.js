@@ -2,13 +2,13 @@ import Vue from 'vue'
 import VueRouter from 'vue-router';
 
 import {TokenService} from "./services/token.service";
-import WelcomeComponent from "./components/pages/WelcomeComponent";
-import LoginComponent from "./components/pages/Auth/LoginComponent";
-import RegisterComponent from "./components/pages/Auth/RegisterComponent";
-import UsersComponent from "./components/pages/users/UsersComponent";
-import UserComponent from "./components/pages/users/UserComponent";
-import UserIndexComponent from "./components/pages/users/UserIndexComponent";
-import DashboardComponent from "./components/pages/DashboardComponent";
+import WelcomeComponent from "./views/WelcomeComponent";
+import LoginComponent from "./views/auth/LoginComponent";
+import RegisterComponent from "./views/auth/RegisterComponent";
+import UsersComponent from "./views/admin/users/UsersComponent";
+import UserComponent from "./views/admin/users/UserComponent";
+import UserIndexComponent from "./views/admin/users/UserIndexComponent";
+import DashboardComponent from "./views/DashboardComponent";
 
 Vue.use(VueRouter);
 
@@ -64,7 +64,7 @@ const routes = [
 
 
 const router = new VueRouter({
-    base: 'laravel-socialite-passport-boilerplate/public',
+    base: 'laravel-socialite-passport-boilerplate/public/admin',
     routes,
     mode: 'history'
 });

@@ -24,6 +24,6 @@ Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 
 // Todo - remove -> mail test-route
-Route::get('test-mailable', function() {
-   return new \App\Mail\Users\Registration\VerifyEmail(\App\Models\User::find(1));
+Route::get('test-mailable', function () {
+    return new \App\Mail\Users\Registration\VerifyEmail(\App\Models\User::find(1));
 });

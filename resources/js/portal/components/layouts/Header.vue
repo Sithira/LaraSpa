@@ -24,7 +24,7 @@
                         </template>
                         <v-list>
                             <v-list-tile>
-                                <v-list-tile-title @click="doLogOut">Logout</v-list-tile-title>
+                                <v-list-tile-title style="cursor: pointer" @click="doLogOut">Logout</v-list-tile-title>
                             </v-list-tile>
                         </v-list>
                     </v-menu>

@@ -1,7 +1,7 @@
 import ApiService from './api.services'
 import {TokenService} from './token.service'
 
-import store from './../store';
+import store from '../store';
 
 
 class AuthenticationError extends Error {

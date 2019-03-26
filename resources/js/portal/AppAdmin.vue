@@ -30,7 +30,7 @@
     import {mapGetters} from "vuex";
 
     export default {
-        name: "App",
+        name: "AppAdmin",
         computed: {
             ...mapGetters('base', ['isRequestPending'])
         },

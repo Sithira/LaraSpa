@@ -80,6 +80,6 @@ class LoginController extends Controller
 
         $response = app()->handle($proxy);
 
-        return redirect()->to(env("APP_URL")."/oauth/callback?data=" . $response->getContent());
+        return redirect()->away(env("APP_URL")."/oauth/callback?data=" . $response->getContent());
     }
 }
