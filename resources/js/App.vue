@@ -11,7 +11,9 @@
         name: "App",
         computed: {
             layout() {
+                // todo: figure out an optimal way for do this.
                 if (window.location.href.indexOf("/portal") > -1
+                    || window.location.href.indexOf("/oauth") > -1
                     || window.location.href.indexOf("/login") > -1
                     || window.location.href.indexOf("/register") > -1) {
                     return "System";
