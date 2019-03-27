@@ -1,37 +1,28 @@
 <template>
 
-    <div>
-
-        <div class="loading" v-if="isRequestPending">
-            <half-circle-spinner
-                    id="loader"
-                    :animation-duration="1000"
-                    :size="60"
-                    :color="'#FFFFFF'"
-            ></half-circle-spinner>
-        </div>
-
-        <Header></Header>
-
-        <div class="container">
-            <router-view></router-view>
-        </div>
-    </div>
+    <component :is="layout">
+        <router-view></router-view>
+    </component>
 
 </template>
 
 <script>
-    import Header from "./components/layouts/Header";
-
-    import {HalfCircleSpinner} from 'epic-spinners'
-    import {mapGetters} from "vuex";
-
     export default {
         name: "App",
         computed: {
-            ...mapGetters('base', ['isRequestPending'])
+            layout() {
+                // todo: figure out an optimal way for do this.
+                if (window.location.href.indexOf("/portal") > -1
+                    || window.location.href.indexOf("/oauth") > -1
+                    || window.location.href.indexOf("/login") > -1
+                    || window.location.href.indexOf("/register") > -1) {
+                    return "System";
+                } else {
+                    return "Web"
+                }
+            }
         },
-        components: {Header, HalfCircleSpinner}
+        components: {}
     }
 </script>
 

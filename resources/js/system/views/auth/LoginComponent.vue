@@ -77,7 +77,7 @@
 
                     await this.login(this.credentials);
 
-                    this.$router.push({ name: 'dashboard' });
+                    this.$router.push({ name: 'portal' });
 
                 }
 
@@ -104,7 +104,7 @@
 
                 this.socialiteLogin(auth_data).then(function() {
 
-                    this.$router.push({name: 'dashboard'});
+                    this.$router.push({name: 'portal'});
 
                 }.bind(this));
 

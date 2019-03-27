@@ -4,16 +4,16 @@
 
         <br />
 
-        <router-link tag="a" to="/users">Users</router-link>
+        <router-link tag="a" :to="{ name: 'portal-admin-users' }">Users</router-link>
     </div>
 </template>
 
 <script>
 
-
     export default {
-        name: "Dashboard",
+        name: "Portal",
     }
+
 </script>
 
 <style scoped>

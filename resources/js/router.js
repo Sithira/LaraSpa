@@ -2,22 +2,15 @@ import Vue from 'vue'
 import VueRouter from 'vue-router';
 
 import {TokenService} from "./services/token.service";
-import WelcomeComponent from "./components/pages/WelcomeComponent";
-import LoginComponent from "./components/pages/Auth/LoginComponent";
-import RegisterComponent from "./components/pages/Auth/RegisterComponent";
-import UsersComponent from "./components/pages/users/UsersComponent";
-import UserComponent from "./components/pages/users/UserComponent";
-import UserIndexComponent from "./components/pages/users/UserIndexComponent";
-import DashboardComponent from "./components/pages/DashboardComponent";
+import LoginComponent from "./system/views/auth/LoginComponent";
+import RegisterComponent from "./system/views/auth/RegisterComponent";
+
+import SystemRoutes from "./system/routes";
+import WebRoutes from "./web/routes";
 
 Vue.use(VueRouter);
 
-const routes = [
-    {
-        path: '/',
-        name: 'welcome',
-        component: WelcomeComponent
-    },
+const baseRoutes = [
     {
         path: '/login',
         name: 'login',
@@ -32,36 +25,10 @@ const routes = [
         path: '/register',
         name: 'register',
         component: RegisterComponent
-    },
-    {
-        path: '/dashboard',
-        name: 'dashboard',
-        component: DashboardComponent,
-        meta: {
-            requiresAuth: true
-        }
-    },
-    {
-        path: '/users',
-        component: UserIndexComponent,
-        children: [
-            {
-                path: '',
-                name: 'users',
-                component: UsersComponent
-            },
-            {
-                path: ':id',
-                name: 'user',
-                component: UserComponent
-            }
-        ],
-        meta: {
-            requiresAuth: true
-        }
     }
 ];
 
+const routes = baseRoutes.concat(SystemRoutes, WebRoutes);
 
 const router = new VueRouter({
     base: 'laravel-socialite-passport-boilerplate/public',
@@ -70,7 +37,6 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-
 
     const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 

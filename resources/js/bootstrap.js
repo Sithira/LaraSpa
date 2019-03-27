@@ -12,7 +12,7 @@ try {
 window.axios = require('axios');
 
 // add axios interceptors.
-require('./helpers/axios.interceptor');
+require('./plugins/axios');
 
 // window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //
