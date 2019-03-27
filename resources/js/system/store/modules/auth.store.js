@@ -1,5 +1,5 @@
-import {AuthenticationError, AuthService} from '../../services/auth.service'
-import {TokenService} from '../../services/token.service'
+import {AuthenticationError, AuthService} from '../../../services/auth.service'
+import {TokenService} from '../../../services/token.service'
 
 const state = {
     authenticating: false,

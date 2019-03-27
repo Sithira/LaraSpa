@@ -14,7 +14,7 @@
 
                     <template v-if="currentUser">
                         <li class="nav-item active">
-                            <router-link tag="a" class="nav-link" active-class="active" to="/dashboard">Dashboard</router-link>
+                            <router-link tag="a" class="nav-link" active-class="active" :to="{name: 'portal-home'}">Portal</router-link>
                         </li>
                     </template>
 

@@ -23,7 +23,7 @@
                         <td>{{ user.provider || 'N/A' }}</td>
                         <td>{{ user.email }}</td>
                         <td>
-                            <router-link tag="a" class="btn btn-sm btn-primary" :to="{ name: 'user', params: { id: user.id } }">
+                            <router-link tag="a" class="btn btn-sm btn-primary" :to="{ name: 'portal-admin-user', params: { id: user.id } }">
                                 view
                             </router-link>
                         </td>

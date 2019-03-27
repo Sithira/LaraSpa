@@ -1,6 +1,6 @@
 import axios from 'axios'
-import store from './../store';
-import {TokenService} from '../services/token.service'
+import store from '../system/store';
+import {TokenService} from './token.service'
 
 const ApiService = {
 
