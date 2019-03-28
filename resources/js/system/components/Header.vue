@@ -8,16 +8,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <router-link tag="a" class="nav-link" active-class="active" to="/">Home</router-link>
-                    </li>
 
                     <template v-if="currentUser">
                         <li class="nav-item active">
                             <router-link tag="a" class="nav-link" active-class="active" :to="{name: 'portal-home'}">Portal</router-link>
                         </li>
                     </template>
-
 
                 </ul>
 

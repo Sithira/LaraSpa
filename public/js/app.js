@@ -1905,10 +1905,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Header",
@@ -44281,22 +44277,6 @@ var render = function() {
               "ul",
               { staticClass: "navbar-nav mr-auto" },
               [
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { tag: "a", "active-class": "active", to: "/" }
-                      },
-                      [_vm._v("Home")]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
                 _vm.currentUser
                   ? [
                       _c(
@@ -60884,7 +60864,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
  // initialize the API service
 
-_services_api_services__WEBPACK_IMPORTED_MODULE_0__["default"].init("http://localhost/laravel-socialite-passport-boilerplate/public"); // check for the token and mount the interceptor.
+_services_api_services__WEBPACK_IMPORTED_MODULE_0__["default"].init("http://localhost/LaraSpa/public"); // check for the token and mount the interceptor.
 
 if (_services_token_service__WEBPACK_IMPORTED_MODULE_5__["TokenService"].getToken()) {
   _services_api_services__WEBPACK_IMPORTED_MODULE_0__["default"].setHeader();
@@ -61041,7 +61021,7 @@ var baseRoutes = [{
 }];
 var routes = baseRoutes.concat(_system_routes__WEBPACK_IMPORTED_MODULE_5__["default"], _web_routes__WEBPACK_IMPORTED_MODULE_6__["default"]);
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
-  base: 'laravel-socialite-passport-boilerplate/public',
+  base: 'LaraSpa/public',
   routes: routes,
   mode: 'history'
 });
@@ -61723,6 +61703,27 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/system/modules/portal/admin/users/mutation-types.js":
+/*!**************************************************************************!*\
+  !*** ./resources/js/system/modules/portal/admin/users/mutation-types.js ***!
+  \**************************************************************************/
+/*! exports provided: GET_ALL_USERS, GET_A_USER, UPDATE_USER, DELETE_USER */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_ALL_USERS", function() { return GET_ALL_USERS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_A_USER", function() { return GET_A_USER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_USER", function() { return UPDATE_USER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DELETE_USER", function() { return DELETE_USER; });
+// user mutation types.
+var GET_ALL_USERS = "get_all_users";
+var GET_A_USER = "get_a_user";
+var UPDATE_USER = "update_a_user";
+var DELETE_USER = "delete_user";
+
+/***/ }),
+
 /***/ "./resources/js/system/modules/portal/admin/users/routes.js":
 /*!******************************************************************!*\
   !*** ./resources/js/system/modules/portal/admin/users/routes.js ***!
@@ -61770,11 +61771,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _services_api_services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../services/api.services */ "./resources/js/services/api.services.js");
+/* harmony import */ var _mutation_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mutation-types */ "./resources/js/system/modules/portal/admin/users/mutation-types.js");
 
+
+var _mutations;
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 var state = {
@@ -61790,19 +61797,15 @@ var getters = {
     return state.user;
   }
 };
-var mutations = {
-  all: function all(state, data) {
-    state.response = state.users = [];
-    state.response = data;
-    state.users = data.data;
-  },
-  get: function get(state, data) {
-    state.user = data.data;
-  },
-  update: function update(state, data) {
-    state.user = data.data;
-  }
-};
+var mutations = (_mutations = {}, _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_2__["GET_ALL_USERS"], function (state, data) {
+  state.response = state.users = [];
+  state.response = data;
+  state.users = data.data;
+}), _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_2__["GET_A_USER"], function (state, data) {
+  state.user = data.data;
+}), _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_2__["UPDATE_USER"], function (state, data) {
+  state.user = data.data;
+}), _mutations);
 var actions = {
   all: function () {
     var _all = _asyncToGenerator(
@@ -61820,7 +61823,7 @@ var actions = {
 
             case 4:
               response = _context.sent;
-              commit('all', response.data);
+              commit(_mutation_types__WEBPACK_IMPORTED_MODULE_2__["GET_ALL_USERS"], response.data);
               _context.next = 11;
               break;
 
@@ -61859,7 +61862,7 @@ var actions = {
 
             case 4:
               response = _context2.sent;
-              commit('get', response.data);
+              commit(_mutation_types__WEBPACK_IMPORTED_MODULE_2__["GET_A_USER"], response.data);
               _context2.next = 11;
               break;
 
@@ -61898,7 +61901,7 @@ var actions = {
 
             case 4:
               response = _context3.sent;
-              commit('update', response.data);
+              commit(_mutation_types__WEBPACK_IMPORTED_MODULE_2__["UPDATE_USER"], response.data);
               _context3.next = 11;
               break;
 
@@ -61920,6 +61923,31 @@ var actions = {
     }
 
     return update;
+  }(),
+  delete: function () {
+    var _delete2 = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(_ref4, data) {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              commit = _ref4.commit;
+
+            case 1:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }));
+
+    function _delete(_x6, _x7) {
+      return _delete2.apply(this, arguments);
+    }
+
+    return _delete;
   }()
 };
 var users = {
@@ -62835,8 +62863,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-socialite-passport-boilerplate/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/laravel-socialite-passport-boilerplate/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/LaraSpa/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/LaraSpa/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

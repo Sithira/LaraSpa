@@ -31,7 +31,7 @@ const baseRoutes = [
 const routes = baseRoutes.concat(SystemRoutes, WebRoutes);
 
 const router = new VueRouter({
-    base: 'laravel-socialite-passport-boilerplate/public',
+    base: 'LaraSpa/public',
     routes,
     mode: 'history'
 });
