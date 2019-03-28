@@ -2235,7 +2235,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
               case 3:
                 this.$router.push({
-                  name: 'dashboard'
+                  name: 'portal'
                 });
 
               case 4:
@@ -2265,7 +2265,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var auth_data = JSON.parse(this.$route.query.data);
       this.socialiteLogin(auth_data).then(function () {
         this.$router.push({
-          name: 'dashboard'
+          name: 'portal'
         });
       }.bind(this));
     }

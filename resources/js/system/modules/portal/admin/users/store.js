@@ -1,5 +1,7 @@
 import ApiService from "../../../../../services/api.services";
 
+import * as types from "./mutation-types";
+
 const state = {
     response: [],
     users: [],
@@ -20,17 +22,17 @@ const getters = {
 
 const mutations = {
 
-    all(state, data) {
+    [types.GET_ALL_USERS] (state, data) {
         state.response = state.users = [];
         state.response = data;
         state.users = data.data;
     },
 
-    get(state, data) {
+    [types.GET_A_USER] (state, data) {
         state.user = data.data;
     },
 
-    update(state, data) {
+    [types.UPDATE_USER] (state, data) {
         state.user = data.data;
     }
 
@@ -43,7 +45,7 @@ const actions = {
         try {
             const response = await ApiService.get('/api/v1/users');
 
-            commit('all', response.data);
+            commit(types.GET_ALL_USERS, response.data);
         } catch (e) {
             console.error(e);
         }
@@ -54,7 +56,7 @@ const actions = {
         try {
             const response = await ApiService.get(`/api/v1/users/${id}`);
 
-            commit('get', response.data)
+            commit(types.GET_A_USER, response.data)
         } catch (e) {
             console.error(e)
         }
@@ -65,10 +67,14 @@ const actions = {
         try {
             const response = await ApiService.patch(`/api/v1/users/${data.id}`, data);
 
-            commit('update', response.data);
+            commit(types.UPDATE_USER, response.data);
         } catch (e) {
             console.error(e);
         }
+    },
+
+    async delete({commit}, data) {
+        // to do:
     }
 
 };
