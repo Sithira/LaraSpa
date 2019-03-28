@@ -12,7 +12,7 @@ import System from "./system/System";
 import Web from "./web/Web";
 
 // initialize the API service
-ApiService.init("http://localhost/laravel-socialite-passport-boilerplate/public");
+ApiService.init("http://localhost/LaraSpa/public");
 
 // check for the token and mount the interceptor.
 if (TokenService.getToken()) {
