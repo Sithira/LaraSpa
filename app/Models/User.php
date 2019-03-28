@@ -76,6 +76,26 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      */
 
+    /**
+     * Get the optician belong to the client.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function optician()
+    {
+        return $this->belongsTo(User::class, 'optician_id', 'id');
+    }
+
+    /**
+     * Get the scheduled checkups for a user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function checkups()
+    {
+        return $this->belongsToMany(CheckupSchedule::class, '');
+    }
+
     /*-----------------------------------------------------------------------
      * Attribute Setters and Getters
      *-----------------------------------------------------------------------

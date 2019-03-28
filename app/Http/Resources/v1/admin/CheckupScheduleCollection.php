@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\v1;
+namespace App\Http\Resources\v1\admin;
 
 use App\Http\Resources\BaseResourceCollection;
 
-class UserCollection extends BaseResourceCollection
+class CheckupScheduleCollection extends BaseResourceCollection
 {
     /**
      * Transform the resource collection into an array.

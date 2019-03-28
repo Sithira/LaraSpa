@@ -40,7 +40,7 @@ Route::post('/register', 'Auth\RegisterController@register');
 |
 */
 Route::group([
-    'middleware' => ['api.v:1', 'auth:api'],
+    'middleware' => ['api.v:1'],
     'prefix'     => 'v1',
 ], function ($router) {
     require base_path('routes/api_v1.php');

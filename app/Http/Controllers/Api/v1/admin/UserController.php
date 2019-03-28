@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api\v1;
+namespace App\Http\Controllers\Api\v1\Admin;
 
 
 use App\Helpers\HTTPMessages;
-use App\Http\Requests\UserRequest;
-use App\Http\Resources\v1\UserCollection;
+use App\Http\Requests\v1\UserRequest;
+use App\Http\Resources\v1\Admin\UserCollection as UserResourceCollection;
+use \App\Http\Resources\v1\Admin\User as UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -15,27 +16,27 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return UserCollection
+     * @return UserResourceCollection
      */
-    public function index() : UserCollection
+    public function index() : UserResourceCollection
     {
         $users = User::paginate();
 
-        return api_resource('UserCollection')->make($users);
+        return api_resource('admin\UserCollection')->make($users);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param UserRequest $request
-     * @return \App\Http\Resources\v1\User
+     * @return UserResource
      */
-    public function store(UserRequest $request) : \App\Http\Resources\v1\User
+    public function store(UserRequest $request) : UserResource
     {
         $user = User::create($request->all());
 
         if ($user instanceof User) {
-            return api_resource('User')->make($user);
+            return api_resource('admin\User')->make($user);
         }
 
         return response()->json(HTTPMessages::GENERIC_ERROR);
@@ -45,11 +46,11 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param User $user
-     * @return \Illuminate\Http\Response
+     * @return UserResource
      */
-    public function show(User $user) : \App\Http\Resources\v1\User
+    public function show(User $user) : UserResource
     {
-        return api_resource('User')->make($user);
+        return api_resource('admin\User')->make($user);
     }
 
 
@@ -58,15 +59,15 @@ class UserController extends Controller
      *
      * @param UserRequest $request
      * @param User $user
-     * @return \Illuminate\Http\Response
+     * @return UserResource
      */
-    public function update(UserRequest $request, User $user)
+    public function update(UserRequest $request, User $user) : UserResource
     {
 
         $status = $user->update($request->all());
 
         if ($status) {
-            return api_resource('User')->make($user);
+            return api_resource('admin\User')->make($user);
         }
 
         return response()->json(HTTPMessages::GENERIC_ERROR);

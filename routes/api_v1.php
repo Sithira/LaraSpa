@@ -6,4 +6,10 @@
  * Time: 14:47
  */
 
-Route::apiResource('/users', 'Api\v1\UserController');
+Route::group(['prefix' => 'admin'], function() {
+
+    Route::apiResource('/users', 'Api\v1\admin\UserController');
+
+    Route::apiResource('/users/schedules', 'Api\v1\admin\CheckupScheduleController');
+
+});

@@ -24,7 +24,7 @@ class UserControllerTest extends TestCase
 
         $api = (string) config('api.version');
 
-        $this->base_url = "api/v{$api}/users";
+        $this->base_url = "api/v{$api}/admin/users";
 
         $this->seed();
     }
@@ -118,7 +118,7 @@ class UserControllerTest extends TestCase
                 'name' => 'Sithira'
             ]
         ], false);
-        
+
     }
 
     /**
