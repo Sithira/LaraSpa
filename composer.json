@@ -22,7 +22,6 @@
         "silber/bouncer": "v1.0.0-rc.5"
     },
     "require-dev": {
-        "laravel/dusk": "^5.0",
         "barryvdh/laravel-ide-helper": "^2.6",
         "beyondcode/laravel-dump-server": "^1.0",
         "filp/whoops": "^2.0",
