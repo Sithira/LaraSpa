@@ -31,7 +31,7 @@ const AuthService = {
                 username: credentials.username,
                 password: credentials.password,
                 client_id: 2,
-                client_secret: 'DYyKJzcPSmDAlBqP0Ijm7F49Ktv5m5bttF2v7xnr'
+                client_secret: 'ZCc2G8eddZpL1raSqj89QGiYliAYedFcH9FaRbK3'
             }
         };
 

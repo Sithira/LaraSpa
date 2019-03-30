@@ -15,6 +15,8 @@ class CreateCheckupsTable extends Migration
     {
         Schema::create('checkups', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

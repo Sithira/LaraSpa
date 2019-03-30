@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\v1\mobile\FollowUpRequest;
 use App\Models\CheckupSchedule;
 use App\Models\User;
+use Illuminate\Http\Resources\Json\Resource;
 
 class MobileApiController extends Controller
 {
@@ -24,7 +25,7 @@ class MobileApiController extends Controller
      * @responseFile 403 responses/templates/403.json
      * @responseFile 404 responses/templates/GET.404.json
      *
-     * @return \Illuminate\Http\Resources\Json\Resource
+     * @return Resource
      */
     public function getInfo()
     {
@@ -46,7 +47,7 @@ class MobileApiController extends Controller
      * @responseFile 403 responses/templates/403.json
      * @responseFile 404 responses/templates/GET.404.json
      *
-     * @return \Illuminate\Http\Resources\Json\Resource
+     * @return Resource
      */
     public function getCheckups()
     {
@@ -73,12 +74,12 @@ class MobileApiController extends Controller
      * @responseFile 404 responses/templates/GET.404.json
      *
      * @param FollowUpRequest $request
-     * @return \Illuminate\Http\Resources\Json\Resource
+     * @return Resource
      */
     public function requestCheckup(FollowUpRequest $request)
     {
 
-        $checkup = CheckupSchedule::create($request->all());
+        $checkup = CheckupSchedule::create($request->validated());
 
         if ($checkup instanceof CheckupSchedule) {
             return api_resource("mobile\CheckupSchedule")->make($checkup);

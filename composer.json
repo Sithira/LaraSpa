@@ -1,10 +1,14 @@
 {
-    "name": "laravel/laravel",
+    "name": "Sithira/LaraSpa",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Single page application using VueJS and Laravel",
     "keywords": [
         "framework",
-        "laravel"
+        "laravel",
+        "vuejs",
+        "apis",
+        "social-auth",
+        "authentication"
     ],
     "license": "MIT",
     "require": {
@@ -26,6 +30,7 @@
         "beyondcode/laravel-dump-server": "^1.0",
         "filp/whoops": "^2.0",
         "fzaninotto/faker": "^1.4",
+        "laravel/dusk": "^5.0",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^2.0",
         "phpunit/phpunit": "^7.5"

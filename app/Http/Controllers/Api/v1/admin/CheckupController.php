@@ -2,54 +2,75 @@
 
 namespace App\Http\Controllers\Api\v1\Admin;
 
+use App\Helpers\HTTPCodes;
+use App\Helpers\HTTPMessages;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\v1\admin\CheckupRequest;
+use App\Http\Resources\v1\admin\Checkup as CheckupResource;
+use App\Http\Resources\v1\admin\CheckupCollection as CheckupCollectionResource;
 use App\Models\Checkup;
-use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class CheckupController extends Controller
 {
 
-    public function index() : \App\Http\Resources\v1\CheckupCollection
+    public function index() : CheckupCollectionResource
     {
         $checkups = Checkup::paginate();
 
-        return api_resource('CheckupCollection')
+        return api_resource('admin\CheckupCollection')
             ->make($checkups);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param CheckupRequest $request
+     * @return JsonResource
      */
-    public function store(Request $request)
+    public function store(CheckupRequest $request)
     {
-        //
+
+        $checkup = Checkup::create($request->validated());
+
+        if ($checkup instanceof Checkup) {
+            return api_resource("admin\Checkup")
+                ->make($checkup)
+                ->response()
+                ->setStatusCode(HTTPCodes::CREATED);
+        }
+
+        return response()->json(HTTPMessages::GENERIC_ERROR);
     }
 
     /**
      * Display the specified resource.
      *
      * @param Checkup $checkup
-     * @return \Illuminate\Http\Resources\Json\Resource
+     * @return CheckupResource
      */
-    public function show(Checkup $checkup) : \App\Http\Resources\v1\Checkup
+    public function show(Checkup $checkup) : CheckupResource
     {
-        return api_resource("Checkup")
+        return api_resource("admin\Checkup")
             ->make($checkup);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param CheckupRequest $request
      * @param Checkup $checkup
-     * @return void
+     * @return CheckupResource
      */
-    public function update(Request $request, Checkup $checkup)
+    public function update(CheckupRequest $request, Checkup $checkup) : CheckupResource
     {
+        $status = $checkup->update($request->validated());
 
+        if ($status) {
+            return api_resource("admin\Checkup")->make($status);
+        }
+
+        return response()->json(HTTPMessages::GENERIC_ERROR);
     }
 
     /**

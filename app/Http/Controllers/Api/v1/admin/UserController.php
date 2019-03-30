@@ -3,13 +3,15 @@
 namespace App\Http\Controllers\Api\v1\Admin;
 
 
+use App\Helpers\HTTPCodes;
 use App\Helpers\HTTPMessages;
-use App\Http\Requests\v1\UserRequest;
-use App\Http\Resources\v1\Admin\UserCollection as UserResourceCollection;
-use \App\Http\Resources\v1\Admin\User as UserResource;
-use App\Models\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\v1\admin\UserRequest;
+use App\Http\Resources\v1\admin\User as UserResource;
+use App\Http\Resources\v1\admin\UserCollection as UserResourceCollection;
+use App\Models\User;
+use Exception;
+use Illuminate\Http\Response;
 
 class UserController extends Controller
 {
@@ -18,7 +20,7 @@ class UserController extends Controller
      *
      * @return UserResourceCollection
      */
-    public function index() : UserResourceCollection
+    public function index(): UserResourceCollection
     {
         $users = User::paginate();
 
@@ -31,12 +33,15 @@ class UserController extends Controller
      * @param UserRequest $request
      * @return UserResource
      */
-    public function store(UserRequest $request) : UserResource
+    public function store(UserRequest $request): UserResource
     {
-        $user = User::create($request->all());
+        $user = User::create($request->validated());
 
         if ($user instanceof User) {
-            return api_resource('admin\User')->make($user);
+            return api_resource('admin\User')
+                ->make($user)
+                ->response()
+                ->setStatusCode(HTTPCodes::CREATED);
         }
 
         return response()->json(HTTPMessages::GENERIC_ERROR);
@@ -48,7 +53,7 @@ class UserController extends Controller
      * @param User $user
      * @return UserResource
      */
-    public function show(User $user) : UserResource
+    public function show(User $user): UserResource
     {
         return api_resource('admin\User')->make($user);
     }
@@ -61,10 +66,10 @@ class UserController extends Controller
      * @param User $user
      * @return UserResource
      */
-    public function update(UserRequest $request, User $user) : UserResource
+    public function update(UserRequest $request, User $user): UserResource
     {
 
-        $status = $user->update($request->all());
+        $status = $user->update($request->validated());
 
         if ($status) {
             return api_resource('admin\User')->make($user);
@@ -78,8 +83,8 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      *
      * @param User $user
-     * @return \Illuminate\Http\Response
-     * @throws \Exception
+     * @return Response
+     * @throws Exception
      */
     public function destroy(User $user)
     {

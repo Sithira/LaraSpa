@@ -2,6 +2,8 @@ import ApiService from "../../../../../services/api.services";
 
 import * as types from "./mutation-types";
 
+const SUB_BASE_URL = "/api/v1/admin/users";
+
 const state = {
     response: [],
     users: [],
@@ -43,7 +45,7 @@ const actions = {
     async all({commit}) {
 
         try {
-            const response = await ApiService.get('/api/v1/users');
+            const response = await ApiService.get(SUB_BASE_URL);
 
             commit(types.GET_ALL_USERS, response.data);
         } catch (e) {
@@ -54,7 +56,7 @@ const actions = {
 
     async get({commit}, id) {
         try {
-            const response = await ApiService.get(`/api/v1/users/${id}`);
+            const response = await ApiService.get(SUB_BASE_URL + `/${id}`);
 
             commit(types.GET_A_USER, response.data)
         } catch (e) {
@@ -65,7 +67,7 @@ const actions = {
     async update({commit}, data) {
 
         try {
-            const response = await ApiService.patch(`/api/v1/users/${data.id}`, data);
+            const response = await ApiService.patch(SUB_BASE_URL + `/${data.id}`, data);
 
             commit(types.UPDATE_USER, response.data);
         } catch (e) {

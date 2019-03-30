@@ -10,6 +10,8 @@ Route::group(['prefix' => 'admin'], function() {
 
     Route::apiResource('/users', 'Api\v1\admin\UserController');
 
+    Route::apiResource("/checkups", 'Api\v1\admin\CheckupController');
+
     Route::apiResource('/users/schedules', 'Api\v1\admin\CheckupScheduleController');
 
 });

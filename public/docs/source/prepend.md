@@ -16,9 +16,10 @@ let headers = {
 }
 
 let body = {
-    client_id: 2,
+    client_id: 1,
     client_secret: "client secret",
-    grant_type: "password",
+    network: 'facebook',
+    grant_type: "social",
     password: "some-password",
     username: "some-username"
 }
@@ -35,7 +36,7 @@ fetch(url, {
 
 ```json
 {
-    "type": "Bearer ",
+    "type": "Bearer",
     "access_token": "AccessToken",
     "refresh_token": "ARefreshToken",
     "expires_in": 332432423

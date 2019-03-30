@@ -1,6 +1,7 @@
 import Portal from "./views/Portal";
 
 import PortalAdminUserRoutes from "./modules/portal/admin/users/routes";
+import PortalAdminCheckupsRoutes  from "./modules/portal/admin/checkups/routes";
 
 const baseRoutes = [
     {
@@ -13,4 +14,4 @@ const baseRoutes = [
     }
 ];
 
-export default baseRoutes.concat(PortalAdminUserRoutes);
+export default baseRoutes.concat(PortalAdminUserRoutes, PortalAdminCheckupsRoutes);

@@ -1,6 +1,5 @@
 import axios from 'axios';
 import swal from 'sweetalert';
-import router from '../router';
 import store from '../system/store';
 import {TokenService} from "../services/token.service";
 

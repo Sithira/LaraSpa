@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Checkup extends Model
 {
-    protected $guarded = ['*'];
+    protected $guarded = ['id'];
 
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
 
-        self::addGlobalScope(new ScopeIsActive);
+        //self::addGlobalScope(new ScopeIsActive);
     }
 
 }

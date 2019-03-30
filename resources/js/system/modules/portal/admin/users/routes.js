@@ -1,21 +1,21 @@
-import UserIndexComponent from "./views/UserIndexComponent";
-import UsersComponent from "./views/UsersComponent";
-import UserComponent from "./views/UserComponent";
+import UserBase from "./views/UserBase";
+import Users from "./views/Users";
+import User from "./views/User";
 
 export default [
     {
         path: '/portal/admin/users',
-        component: UserIndexComponent,
+        component: UserBase,
         children: [
             {
                 path: '',
                 name: 'portal-admin-users',
-                component: UsersComponent
+                component: Users
             },
             {
                 path: ':id',
                 name: 'portal-admin-user',
-                component: UserComponent
+                component: User
             }
         ],
         meta: {

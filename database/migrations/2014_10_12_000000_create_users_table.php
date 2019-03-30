@@ -28,8 +28,8 @@ class CreateUsersTable extends Migration
             $table->string('avatar')->nullable();
 
             // app specific columns.
-            $table->enum('type', ['user', 'optician']);
-            $table->unsignedInteger('optician_id');
+            $table->enum('type', ['user', 'optician'])->default('user');
+            $table->unsignedInteger('optician_id')->nullable();
 
             $table->boolean('is_active')->default(1);
 
