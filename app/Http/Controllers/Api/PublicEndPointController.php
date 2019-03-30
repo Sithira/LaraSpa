@@ -11,7 +11,27 @@ class PublicEndPointController extends Controller
 {
 
     /**
+     * Ping pong
+     *
+     * Check the ping pong.
+     *
+     * @group General
+     *
+     * @response "pong"
+     *
+     * @return string
+     */
+    public function ping()
+    {
+        return "ping";
+    }
+
+    /**
+     * Welcome message
+     *
      * Return the welcome message to the user
+     *
+     * @group General
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -25,6 +45,8 @@ class PublicEndPointController extends Controller
     /**
      * Return the current version of the application.
      *
+     * @group General
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function version()
@@ -36,6 +58,12 @@ class PublicEndPointController extends Controller
 
     /**
      * Return the application meta information.
+     *
+     * @group general
+     *
+     * @response 200 {
+        "data": "App name and version"
+      }
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -50,6 +78,8 @@ class PublicEndPointController extends Controller
 
     /**
      * Get available authentication providers
+     *
+     * @group general
      *
      * @return \Illuminate\Http\JsonResponse
      */

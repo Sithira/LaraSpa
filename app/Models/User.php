@@ -16,6 +16,10 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable, HasApiTokens, SoftDeletes, HasRolesAndAbilities;
 
+    const USER = "USER";
+
+    const OPTICIAN = "OPTICIAN";
+
     /**
      * The attributes that are mass assignable.
      *
@@ -89,11 +93,11 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Get the scheduled checkups for a user.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function checkups()
     {
-        return $this->belongsToMany(CheckupSchedule::class, '');
+        return $this->hasMany(CheckupSchedule::class, 'user_id');
     }
 
     /*-----------------------------------------------------------------------

@@ -27,6 +27,10 @@ class CreateUsersTable extends Migration
             $table->string('access_token')->nullable();
             $table->string('avatar')->nullable();
 
+            // app specific columns.
+            $table->enum('type', ['user', 'optician']);
+            $table->unsignedInteger('optician_id');
+
             $table->boolean('is_active')->default(1);
 
             $table->timestamp('email_verified_at')->nullable();

@@ -12,6 +12,11 @@ use \App\Http\Resources\v1\admin\CheckupSchedule as CheckupScheduleResource;
 class CheckupScheduleController extends Controller
 {
 
+    /**
+     * List all the checks ups for admins.
+     *
+     * @return CheckupScheduleCollectionResource
+     */
     public function index() : CheckupScheduleCollectionResource
     {
         $schedules = CheckupSchedule::paginate();
@@ -20,6 +25,12 @@ class CheckupScheduleController extends Controller
             ->make($schedules);
     }
 
+    /**
+     * Create a new checkup for admin
+     *
+     * @param CheckupScheduleRequest $request
+     * @return CheckupScheduleResource
+     */
     public function store(CheckupScheduleRequest $request) : CheckupScheduleResource
     {
         $scheduleCheckup = CheckupSchedule::create($request->all());
@@ -31,12 +42,23 @@ class CheckupScheduleController extends Controller
         return response()->json(HTTPMessages::ERROR);
     }
 
+    /**
+     *
+     *
+     * @param CheckupSchedule $checkupSchedule
+     * @return CheckupScheduleResource
+     */
     public function show(CheckupSchedule $checkupSchedule) : CheckupScheduleResource
     {
         return api_resource("admin\CheckupSchedule")
             ->make($checkupSchedule);
     }
 
+    /**
+     * @param CheckupScheduleRequest $request
+     * @param CheckupSchedule $checkupSchedule
+     * @return CheckupScheduleResource
+     */
     public function update(CheckupScheduleRequest $request, CheckupSchedule $checkupSchedule) : CheckupScheduleResource
     {
         $status = $checkupSchedule->update($request->all());
@@ -48,6 +70,9 @@ class CheckupScheduleController extends Controller
         return response()->json(HTTPMessages::GENERIC_ERROR);
     }
 
+    /**
+     * @param CheckupSchedule $checkupSchedule
+     */
     public function destroy(CheckupSchedule $checkupSchedule)
     {
         //

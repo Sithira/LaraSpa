@@ -13,16 +13,15 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
 
 Route::get('/', 'Api\PublicEndPointController@welcome')
     ->name('welcome');
 
-Route::get('/ping', function() {
-    return "pong";
-})->name('ping');
+Route::get('/ping', "Api\PublicEndPointController@ping")
+    ->name('ping');
 
 Route::get('/version', 'Api\PublicEndPointController@version')
     ->name('version');
@@ -40,7 +39,7 @@ Route::post('/register', 'Auth\RegisterController@register');
 |
 */
 Route::group([
-    'middleware' => ['api.v:1'],
+    'middleware' => ['api.v:1', 'auth:api'],
     'prefix'     => 'v1',
 ], function ($router) {
     require base_path('routes/api_v1.php');

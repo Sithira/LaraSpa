@@ -13,3 +13,11 @@ Route::group(['prefix' => 'admin'], function() {
     Route::apiResource('/users/schedules', 'Api\v1\admin\CheckupScheduleController');
 
 });
+
+Route::group(['prefix' => 'mobile'], function() {
+
+    Route::get('/user', 'Api\v1\mobile\MobileApiController@getInfo');
+    Route::get('/user/checkups', 'Api\v1\mobile\MobileApiController@getCheckups');
+    Route::post('/user/checkups/', 'Api\v1\mobile\MobileApiController@requestCheckup');
+
+});

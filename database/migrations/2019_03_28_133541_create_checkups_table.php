@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAppModelCheckupsTable extends Migration
+class CreateCheckupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAppModelCheckupsTable extends Migration
      */
     public function up()
     {
-        Schema::create('app_model_checkups', function (Blueprint $table) {
+        Schema::create('checkups', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
         });

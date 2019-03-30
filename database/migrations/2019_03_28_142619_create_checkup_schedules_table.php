@@ -15,6 +15,11 @@ class CreateCheckupSchedulesTable extends Migration
     {
         Schema::create('checkup_schedules', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->enum('request_by', ['USER', 'OPTICIAN']);
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('checkup_id')->nullable();
+            $table->dateTime('diagnosed_date')->nullable();
+            $table->string('note')->nullable();
             $table->timestamps();
         });
     }

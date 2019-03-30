@@ -1,0 +1,12 @@
+{
+  "id": 1025,
+  "name": "Sithira Munasinghe",
+  "email": "xyz@xyz.com",
+  "provider": "local",
+  "avatar": "link_to_avatar.com",
+  "optician": {
+    "id": 1025,
+    "name": "Sithira Munasinghe",
+    "email": "zxc@zzxc.com"
+  }
+}

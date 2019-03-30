@@ -1,0 +1,357 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/all.js"></script>
+
+
+          <script>
+        $(function() {
+            setupLanguages(["bash","javascript"]);
+        });
+      </script>
+      </head>
+
+  <body class="">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+        <img src="images/logo.png" />
+                    <div class="lang-selector">
+                                  <a href="#" data-language-name="bash">bash</a>
+                                  <a href="#" data-language-name="javascript">javascript</a>
+                            </div>
+                            <div class="search">
+              <input type="text" class="search" id="input-search" placeholder="Search">
+            </div>
+            <ul class="search-results"></ul>
+              <div id="toc">
+      </div>
+                    <ul class="toc-footer">
+                                  <li><a href='http://github.com/mpociot/documentarian'>Documentation Powered by Documentarian</a></li>
+                            </ul>
+            </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+          <!-- START_INFO -->
+<h1>Info</h1>
+<p>Welcome to the generated API reference.
+<a href="http://localhost/LaraSpa/public/docs/collection.json">Get Postman Collection</a></p>
+<!-- END_INFO -->
+<!-- START_AUTHENTICATION -->
+<h1>Authentication</h1>
+<h2>Login</h2>
+<p>Login to the application</p>
+<blockquote>
+<p>Example request</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL("http://localhost/LaraSpa/public/oauth/token");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+let body = {
+    client_id: 2,
+    client_secret: "client secret",
+    grant_type: "password",
+    password: "some-password",
+    username: "some-username"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "type": "Bearer ",
+    "access_token": "AccessToken",
+    "refresh_token": "ARefreshToken",
+    "expires_in": 332432423
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST oauth/token</code></p>
+<!-- END_AUTHENTICATION -->
+<h1>General</h1>
+<!-- START_be144776226f630c3f444c294d8a0395 -->
+<h2>Ping pong</h2>
+<p>Check the ping pong.</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/LaraSpa/public/api/ping" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/LaraSpa/public/api/ping");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">"pong"</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/ping</code></p>
+<!-- END_be144776226f630c3f444c294d8a0395 -->
+<!-- START_6b67a10116f49797d9fbe1c2ea7bad28 -->
+<h2>Return the current version of the application.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/LaraSpa/public/api/version" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/LaraSpa/public/api/version");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "version": "1"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/version</code></p>
+<!-- END_6b67a10116f49797d9fbe1c2ea7bad28 -->
+<h1>Mobile</h1>
+<!-- START_4ba3d46ddc57254f5510cbed41b323c5 -->
+<h2>Get user logged in user.</h2>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
+Get the info for the current logged in user with allocated optician data.</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/LaraSpa/public/api/v1/mobile/user" \
+    -H "Authorization: Bearer {token}"</code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/LaraSpa/public/api/v1/mobile/user");
+
+let headers = {
+    "Authorization": "Bearer {token}",
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "id": 1025,
+    "name": "Sithira Munasinghe",
+    "email": "xyz@xyz.com",
+    "provider": "local",
+    "avatar": "link_to_avatar.com",
+    "optician": {
+        "id": 1025,
+        "name": "Sithira Munasinghe",
+        "email": "zxc@zzxc.com"
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (403):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "unauthenticated"
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "ERROR",
+    "message": "Requested resource not found"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/v1/mobile/user</code></p>
+<!-- END_4ba3d46ddc57254f5510cbed41b323c5 -->
+<!-- START_4667974b1efa9960391ea5072972072f -->
+<h2>Get all checkups</h2>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
+Get all the checkups that the authenticated user is allocated to.</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/LaraSpa/public/api/v1/mobile/user/checkups" \
+    -H "Authorization: Bearer {token}"</code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/LaraSpa/public/api/v1/mobile/user/checkups");
+
+let headers = {
+    "Authorization": "Bearer {token}",
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "id": 123,
+    "requested_by": "Sithira munasinghe",
+    "user_id": 12,
+    "checkup_id": 3,
+    "diagnosed_date": "2019-03-30",
+    "note": "Some note",
+    "checkup": {
+        "name": "checkup name",
+        "level": 3
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (403):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "unauthenticated"
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "ERROR",
+    "message": "Requested resource not found"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/v1/mobile/user/checkups</code></p>
+<!-- END_4667974b1efa9960391ea5072972072f -->
+<!-- START_9c26cf07230d291ff7bdef696d1d47d9 -->
+<h2>Create a checkup</h2>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
+Authenticated user can create a new checkup.</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://localhost/LaraSpa/public/api/v1/mobile/user/checkups" \
+    -H "Authorization: Bearer {token}" \
+    -H "Content-Type: application/json" \
+    -d '{"optician_id":11,"diagnose_date":"jKPb81lL1Mm7Wvhj","note":"TTUlSk1EMF0wC1QG"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/LaraSpa/public/api/v1/mobile/user/checkups");
+
+let headers = {
+    "Authorization": "Bearer {token}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "optician_id": 11,
+    "diagnose_date": "jKPb81lL1Mm7Wvhj",
+    "note": "TTUlSk1EMF0wC1QG"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (201):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "id": 123,
+    "requested_by": "Sithira munasinghe",
+    "user_id": 12,
+    "checkup_id": 3,
+    "diagnosed_date": "2019-03-30",
+    "note": "Some note"
+}</code></pre>
+<blockquote>
+<p>Example response (403):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "unauthenticated"
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "ERROR",
+    "message": "Requested resource not found"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/v1/mobile/user/checkups</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optician_id</td>
+<td>integer</td>
+<td>required</td>
+<td>Optician id</td>
+</tr>
+<tr>
+<td>diagnose_date</td>
+<td>string</td>
+<td>required</td>
+<td>Diagnose date</td>
+</tr>
+<tr>
+<td>note</td>
+<td>string</td>
+<td>optional</td>
+<td>Note for the other party</td>
+</tr>
+</tbody>
+</table>
+<!-- END_9c26cf07230d291ff7bdef696d1d47d9 -->
+      </div>
+      <div class="dark-box">
+                        <div class="lang-selector">
+                                    <a href="#" data-language-name="bash">bash</a>
+                                    <a href="#" data-language-name="javascript">javascript</a>
+                              </div>
+                </div>
+    </div>
+  </body>
+</html>
