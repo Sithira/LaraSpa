@@ -25,7 +25,7 @@ class CheckupRequest extends FormRequest
     {
         return [
             'name' => 'required|min:3',
-            'note' => 'nullable|min:10'
+            'description' => 'nullable|min:10'
         ];
     }
 }

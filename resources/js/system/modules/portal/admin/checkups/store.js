@@ -72,7 +72,7 @@ export const actions = {
 
     async update({commit}, data) {
         try {
-            const response = await ApiService.patch(SUB_BASE_URL + data.id, data.data);
+            const response = await ApiService.patch(SUB_BASE_URL + `/${data.id}`, data.data);
 
             commit(types.UPDATE_A_CHECKUP, response.data);
         } catch (e) {

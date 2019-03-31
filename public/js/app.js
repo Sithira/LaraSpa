@@ -1921,10 +1921,136 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/system/modules/portal/admin/checkups/views/Checkup.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/system/modules/portal/admin/checkups/views/Checkup.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupSchedule.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupSchedule.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sweetalert */ "./node_modules/sweetalert/dist/sweetalert.min.js");
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(sweetalert__WEBPACK_IMPORTED_MODULE_1__);
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "CheckupSchedule",
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])("checkupschedules", ["schedule"])),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("checkupschedules", ["get", "update"]), {
+    patch: function patch() {
+      var _this = this;
+
+      sweetalert__WEBPACK_IMPORTED_MODULE_1___default()({
+        title: 'Are you sure to update ?',
+        buttons: true,
+        dangerMode: true
+      }).then(function (response) {
+        if (response) {
+          _this.update({
+            id: _this.schedule.id,
+            data: _this.schedule
+          }).then(function () {
+            $("#edit").modal('hide');
+          }).catch(function (e) {
+            console.log(e);
+          });
+        }
+      }).catch(function () {
+        sweetalert__WEBPACK_IMPORTED_MODULE_1___default.a.stopLoading();
+      });
+    }
+  }),
+  created: function created() {
+    this.get(this.$route.params.id);
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupScheduleBase.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupScheduleBase.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "CheckupScheduleBase"
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupSchedules.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupSchedules.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1990,11 +2116,146 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "CheckupSchedules",
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])("checkupschedules", ["schedules", "schedule"])),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("checkupschedules", ["all", "store"]), {
+    create: function create() {}
+  }),
+  mounted: function mounted() {
+    this.all();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/system/modules/portal/admin/checkups/views/Checkup.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/system/modules/portal/admin/checkups/views/Checkup.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sweetalert */ "./node_modules/sweetalert/dist/sweetalert.min.js");
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(sweetalert__WEBPACK_IMPORTED_MODULE_1__);
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Checkup",
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])("checkups", ["checkup"])),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("checkups", ["get"])),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("checkups", ["get", "update"]), {
+    patch: function patch() {
+      var _this = this;
+
+      sweetalert__WEBPACK_IMPORTED_MODULE_1___default()({
+        title: 'Are you sure to update ?',
+        buttons: true,
+        dangerMode: true
+      }).then(function (response) {
+        if (response) {
+          _this.update({
+            id: _this.checkup.id,
+            data: _this.checkup
+          }).then(function () {
+            $("#edit").modal('hide');
+          }).catch(function (e) {
+            console.log(e);
+          });
+        }
+      }).catch(function () {
+        sweetalert__WEBPACK_IMPORTED_MODULE_1___default.a.stopLoading();
+      });
+    }
+  }),
   created: function created() {
     this.get(this.$route.params.id);
   }
@@ -2031,6 +2292,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sweetalert */ "./node_modules/sweetalert/dist/sweetalert.min.js");
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(sweetalert__WEBPACK_IMPORTED_MODULE_1__);
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -2113,13 +2376,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Checkups",
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])("checkups", ["checkups", "checkup"])),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("checkups", ["all", "store"]), {
     create: function create() {
-      this.store(this.checkup);
+      var _this = this;
+
+      sweetalert__WEBPACK_IMPORTED_MODULE_1___default()({
+        title: 'Are you sure to create this ?',
+        buttons: true,
+        dangerMode: true
+      }).then(function (response) {
+        if (response) {
+          _this.store(_this.checkup).then(function () {
+            $("#store").modal('hide');
+          }).catch(function (e) {
+            console.log(e);
+          });
+        }
+      }).catch(function () {
+        sweetalert__WEBPACK_IMPORTED_MODULE_1___default.a.stopLoading();
+      });
     }
   }),
   mounted: function mounted() {
@@ -2326,6 +2608,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -44608,6 +44891,494 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupSchedule.vue?vue&type=template&id=fcc3b1d6&scoped=true&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupSchedule.vue?vue&type=template&id=fcc3b1d6&scoped=true& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card-header" }, [
+        _vm._v(
+          "\n            Schedule ID: " +
+            _vm._s(_vm.schedule.name) +
+            "\n\n            "
+        ),
+        _vm._m(0)
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [
+        _c("p", [_vm._v("Schedule id: " + _vm._s(_vm.schedule.id))]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            "Schedule request by: " + _vm._s(_vm.schedule.request_by || "N/A")
+          )
+        ]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            "Schedule diagnosed date: " +
+              _vm._s(_vm.schedule.diagnosed_date || "N/A")
+          )
+        ]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v("Schedule note: " + _vm._s(_vm.schedule.note || "N/A"))
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "edit",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "edit",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c(
+                  "h5",
+                  {
+                    staticClass: "modal-title",
+                    attrs: { id: "exampleModalLabel" }
+                  },
+                  [_vm._v("Edit Form - " + _vm._s(_vm.schedule.id) + " ")]
+                ),
+                _vm._v(" "),
+                _vm._m(1)
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "name" } }, [
+                    _vm._v("Diagnosed Date")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.schedule.diagnosed_date,
+                        expression: "schedule.diagnosed_date"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text", id: "name" },
+                    domProps: { value: _vm.schedule.diagnosed_date },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.schedule,
+                          "diagnosed_date",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "description" } }, [
+                    _vm._v("Note")
+                  ]),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.schedule.note,
+                        expression: "schedule.note"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { id: "description", name: "description" },
+                    domProps: { value: _vm.schedule.note },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.schedule, "note", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { type: "button", "data-dismiss": "modal" }
+                  },
+                  [_vm._v("Close")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { type: "button" },
+                    on: { click: _vm.patch }
+                  },
+                  [_vm._v("Save changes")]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "float-right" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary btn-sm",
+          attrs: {
+            type: "button",
+            "data-toggle": "modal",
+            "data-target": "#store"
+          }
+        },
+        [_vm._v("\n                    Edit\n                ")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupScheduleBase.vue?vue&type=template&id=6cbc3b06&scoped=true&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupScheduleBase.vue?vue&type=template&id=6cbc3b06&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("router-view")
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupSchedules.vue?vue&type=template&id=945b46a4&scoped=true&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupSchedules.vue?vue&type=template&id=945b46a4&scoped=true& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "table-responsive" }, [
+      _c("table", { staticClass: "table table-bordered" }, [
+        _vm._m(1),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.schedules, function(schedule) {
+            return _c("tr", [
+              _c("td", [_vm._v(_vm._s(schedule.id))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(schedule.user_id))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(schedule.request_by))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(schedule.diagnosed_date || "N/A"))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(schedule.note || "N/A"))]),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "btn btn-sm btn-primary",
+                      attrs: {
+                        tag: "a",
+                        to: {
+                          name: "portal-admin-schedule",
+                          params: { id: schedule.id }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        view\n                    "
+                      )
+                    ]
+                  )
+                ],
+                1
+              )
+            ])
+          }),
+          0
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "store",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "store",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c(
+                  "h5",
+                  {
+                    staticClass: "modal-title",
+                    attrs: { id: "exampleModalLabel" }
+                  },
+                  [_vm._v("Edit Form - " + _vm._s(_vm.schedule.id) + " ")]
+                ),
+                _vm._v(" "),
+                _vm._m(2)
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.schedule.name,
+                        expression: "schedule.name"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text", id: "name" },
+                    domProps: { value: _vm.schedule.name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.schedule, "name", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "description" } }, [
+                    _vm._v("Description")
+                  ]),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.schedule.description,
+                        expression: "schedule.description"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { id: "description", name: "description" },
+                    domProps: { value: _vm.schedule.description },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.schedule,
+                          "description",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { type: "button", "data-dismiss": "modal" }
+                  },
+                  [_vm._v("Close")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { type: "button" },
+                    on: { click: _vm.create }
+                  },
+                  [_vm._v("Create")]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h3", [
+      _vm._v("\n        Schedules in system\n\n        "),
+      _c("div", { staticClass: "float-right" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary btn-sm",
+            attrs: {
+              type: "button",
+              "data-toggle": "modal",
+              "data-target": "#store"
+            }
+          },
+          [_vm._v("\n                Create\n            ")]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("User id")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Request by")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Diagnosed Date")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Note")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Active")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/system/modules/portal/admin/checkups/views/Checkup.vue?vue&type=template&id=4b2c5548&scoped=true&":
 /*!******************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/system/modules/portal/admin/checkups/views/Checkup.vue?vue&type=template&id=4b2c5548&scoped=true& ***!
@@ -44734,7 +45505,26 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(2)
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { type: "button", "data-dismiss": "modal" }
+                  },
+                  [_vm._v("Close")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { type: "button" },
+                    on: { click: _vm.patch }
+                  },
+                  [_vm._v("Save changes")]
+                )
+              ])
             ])
           ]
         )
@@ -44755,7 +45545,7 @@ var staticRenderFns = [
           attrs: {
             type: "button",
             "data-toggle": "modal",
-            "data-target": "#edit"
+            "data-target": "#store"
           }
         },
         [_vm._v("\n                    Edit\n                ")]
@@ -44778,27 +45568,6 @@ var staticRenderFns = [
       },
       [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-secondary",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("Close")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "button" } },
-        [_vm._v("Save changes")]
-      )
-    ])
   }
 ]
 render._withStripped = true
@@ -44899,10 +45668,10 @@ var render = function() {
       {
         staticClass: "modal fade",
         attrs: {
-          id: "edit",
+          id: "store",
           tabindex: "-1",
           role: "dialog",
-          "aria-labelledby": "edit",
+          "aria-labelledby": "store",
           "aria-hidden": "true"
         }
       },
@@ -45027,7 +45796,7 @@ var staticRenderFns = [
             attrs: {
               type: "button",
               "data-toggle": "modal",
-              "data-target": "#edit"
+              "data-target": "#store"
             }
           },
           [_vm._v("\n                Create\n            ")]
@@ -45414,6 +46183,12 @@ var render = function() {
         "router-link",
         { attrs: { tag: "a", to: { name: "portal-admin-checkups" } } },
         [_vm._v("Checkups")]
+      ),
+      _vm._v(" "),
+      _c(
+        "router-link",
+        { attrs: { tag: "a", to: { name: "portal-admin-schedules" } } },
+        [_vm._v("Schedules")]
       )
     ],
     1
@@ -62383,6 +63158,523 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/system/modules/portal/admin/checkup-schedule/mutation-types.js":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/system/modules/portal/admin/checkup-schedule/mutation-types.js ***!
+  \*************************************************************************************/
+/*! exports provided: GET_ALL_CHECKUP_SCHEDULES, GET_A_CHECKUP_SCHEDULE, CREATE_CHECKUP_SCHEDULE, UPDATE_A_CHECKUP_SCHEDULE, DELETE_A_CHECKUP_SCHEDULE */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_ALL_CHECKUP_SCHEDULES", function() { return GET_ALL_CHECKUP_SCHEDULES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_A_CHECKUP_SCHEDULE", function() { return GET_A_CHECKUP_SCHEDULE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CREATE_CHECKUP_SCHEDULE", function() { return CREATE_CHECKUP_SCHEDULE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_A_CHECKUP_SCHEDULE", function() { return UPDATE_A_CHECKUP_SCHEDULE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DELETE_A_CHECKUP_SCHEDULE", function() { return DELETE_A_CHECKUP_SCHEDULE; });
+var GET_ALL_CHECKUP_SCHEDULES = "get all checkup schedules";
+var GET_A_CHECKUP_SCHEDULE = "get a checkup schedule";
+var CREATE_CHECKUP_SCHEDULE = "create a new checkup schedule";
+var UPDATE_A_CHECKUP_SCHEDULE = "update a checkup schedule";
+var DELETE_A_CHECKUP_SCHEDULE = "delete a checkup schedule";
+
+/***/ }),
+
+/***/ "./resources/js/system/modules/portal/admin/checkup-schedule/routes.js":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/system/modules/portal/admin/checkup-schedule/routes.js ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _view_CheckupScheduleBase__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./view/CheckupScheduleBase */ "./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupScheduleBase.vue");
+/* harmony import */ var _view_CheckupSchedules__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./view/CheckupSchedules */ "./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupSchedules.vue");
+/* harmony import */ var _view_CheckupSchedule__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./view/CheckupSchedule */ "./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupSchedule.vue");
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ([{
+  path: '/portal/admin/checkup-schedules',
+  component: _view_CheckupScheduleBase__WEBPACK_IMPORTED_MODULE_0__["default"],
+  children: [{
+    path: '',
+    name: 'portal-admin-schedules',
+    component: _view_CheckupSchedules__WEBPACK_IMPORTED_MODULE_1__["default"]
+  }, {
+    path: ':id',
+    name: 'portal-admin-schedule',
+    component: _view_CheckupSchedule__WEBPACK_IMPORTED_MODULE_2__["default"]
+  }]
+}]);
+
+/***/ }),
+
+/***/ "./resources/js/system/modules/portal/admin/checkup-schedule/store.js":
+/*!****************************************************************************!*\
+  !*** ./resources/js/system/modules/portal/admin/checkup-schedule/store.js ***!
+  \****************************************************************************/
+/*! exports provided: checkupschedules */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "checkupschedules", function() { return checkupschedules; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _services_api_services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../services/api.services */ "./resources/js/services/api.services.js");
+/* harmony import */ var _mutation_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mutation-types */ "./resources/js/system/modules/portal/admin/checkup-schedule/mutation-types.js");
+
+
+var _mutations;
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var SUB_BASE_URL = "/api/v1/admin/schedules";
+var state = {
+  schedules: [],
+  schedule: {}
+};
+var getters = {
+  schedules: function schedules(state) {
+    return state.schedules;
+  },
+  schedule: function schedule(state) {
+    return state.schedule;
+  }
+};
+var mutations = (_mutations = {}, _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_2__["GET_ALL_CHECKUP_SCHEDULES"], function (state, data) {
+  state.schedules = data.data;
+}), _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_2__["GET_A_CHECKUP_SCHEDULE"], function (state, data) {
+  state.schedule = data.data;
+}), _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_2__["CREATE_CHECKUP_SCHEDULE"], function (state, data) {
+  state.schedules.push(data.data);
+}), _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_2__["UPDATE_A_CHECKUP_SCHEDULE"], function (state, data) {
+  state.schedule = data.data;
+}), _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_2__["DELETE_A_CHECKUP_SCHEDULE"], function (state) {
+  state.schedule = {};
+}), _mutations);
+var actions = {
+  all: function () {
+    var _all = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref) {
+      var commit, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              commit = _ref.commit;
+              _context.prev = 1;
+              _context.next = 4;
+              return _services_api_services__WEBPACK_IMPORTED_MODULE_1__["default"].get(SUB_BASE_URL);
+
+            case 4:
+              response = _context.sent;
+              commit(_mutation_types__WEBPACK_IMPORTED_MODULE_2__["GET_ALL_CHECKUP_SCHEDULES"], response.data);
+              _context.next = 11;
+              break;
+
+            case 8:
+              _context.prev = 8;
+              _context.t0 = _context["catch"](1);
+              console.log(_context.t0);
+
+            case 11:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[1, 8]]);
+    }));
+
+    function all(_x) {
+      return _all.apply(this, arguments);
+    }
+
+    return all;
+  }(),
+  get: function () {
+    var _get = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(_ref2, id) {
+      var commit, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              commit = _ref2.commit;
+              _context2.prev = 1;
+              _context2.next = 4;
+              return _services_api_services__WEBPACK_IMPORTED_MODULE_1__["default"].get(SUB_BASE_URL + "/".concat(id));
+
+            case 4:
+              response = _context2.sent;
+              commit(_mutation_types__WEBPACK_IMPORTED_MODULE_2__["GET_A_CHECKUP_SCHEDULE"], response.data);
+              _context2.next = 11;
+              break;
+
+            case 8:
+              _context2.prev = 8;
+              _context2.t0 = _context2["catch"](1);
+              console.log(_context2.t0);
+
+            case 11:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[1, 8]]);
+    }));
+
+    function get(_x2, _x3) {
+      return _get.apply(this, arguments);
+    }
+
+    return get;
+  }(),
+  create: function () {
+    var _create = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref3, data) {
+      var commit, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              commit = _ref3.commit;
+              _context3.prev = 1;
+              _context3.next = 4;
+              return _services_api_services__WEBPACK_IMPORTED_MODULE_1__["default"].post(SUB_BASE_URL, data.data);
+
+            case 4:
+              response = _context3.sent;
+              commit(_mutation_types__WEBPACK_IMPORTED_MODULE_2__["UPDATE_A_CHECKUP_SCHEDULE"], response.data);
+              _context3.next = 11;
+              break;
+
+            case 8:
+              _context3.prev = 8;
+              _context3.t0 = _context3["catch"](1);
+              console.log(_context3.t0);
+
+            case 11:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, null, [[1, 8]]);
+    }));
+
+    function create(_x4, _x5) {
+      return _create.apply(this, arguments);
+    }
+
+    return create;
+  }(),
+  update: function () {
+    var _update = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(_ref4, data) {
+      var commit, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              commit = _ref4.commit;
+              _context4.prev = 1;
+              _context4.next = 4;
+              return _services_api_services__WEBPACK_IMPORTED_MODULE_1__["default"].patch(SUB_BASE_URL + "/".concat(data.id), data.data);
+
+            case 4:
+              response = _context4.sent;
+              commit(_mutation_types__WEBPACK_IMPORTED_MODULE_2__["UPDATE_A_CHECKUP_SCHEDULE"], response.data);
+              _context4.next = 11;
+              break;
+
+            case 8:
+              _context4.prev = 8;
+              _context4.t0 = _context4["catch"](1);
+              console.log(_context4.t0);
+
+            case 11:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4, null, [[1, 8]]);
+    }));
+
+    function update(_x6, _x7) {
+      return _update.apply(this, arguments);
+    }
+
+    return update;
+  }(),
+  delete: function () {
+    var _delete2 = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(_ref5, id) {
+      var commit, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              commit = _ref5.commit;
+              _context5.prev = 1;
+              _context5.next = 4;
+              return _services_api_services__WEBPACK_IMPORTED_MODULE_1__["default"].delete(SUB_BASE_URL + "/".concat(id));
+
+            case 4:
+              response = _context5.sent;
+              commit(_mutation_types__WEBPACK_IMPORTED_MODULE_2__["UPDATE_A_CHECKUP_SCHEDULE"], response.data);
+              _context5.next = 11;
+              break;
+
+            case 8:
+              _context5.prev = 8;
+              _context5.t0 = _context5["catch"](1);
+              console.log(_context5.t0);
+
+            case 11:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5, null, [[1, 8]]);
+    }));
+
+    function _delete(_x8, _x9) {
+      return _delete2.apply(this, arguments);
+    }
+
+    return _delete;
+  }()
+};
+var checkupschedules = {
+  namespaced: true,
+  state: state,
+  getters: getters,
+  mutations: mutations,
+  actions: actions
+};
+
+/***/ }),
+
+/***/ "./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupSchedule.vue":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupSchedule.vue ***!
+  \********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CheckupSchedule_vue_vue_type_template_id_fcc3b1d6_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CheckupSchedule.vue?vue&type=template&id=fcc3b1d6&scoped=true& */ "./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupSchedule.vue?vue&type=template&id=fcc3b1d6&scoped=true&");
+/* harmony import */ var _CheckupSchedule_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CheckupSchedule.vue?vue&type=script&lang=js& */ "./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupSchedule.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CheckupSchedule_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CheckupSchedule_vue_vue_type_template_id_fcc3b1d6_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CheckupSchedule_vue_vue_type_template_id_fcc3b1d6_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "fcc3b1d6",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupSchedule.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupSchedule.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************!*\
+  !*** ./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupSchedule.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckupSchedule_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./CheckupSchedule.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupSchedule.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckupSchedule_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupSchedule.vue?vue&type=template&id=fcc3b1d6&scoped=true&":
+/*!***************************************************************************************************************************************!*\
+  !*** ./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupSchedule.vue?vue&type=template&id=fcc3b1d6&scoped=true& ***!
+  \***************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckupSchedule_vue_vue_type_template_id_fcc3b1d6_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./CheckupSchedule.vue?vue&type=template&id=fcc3b1d6&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupSchedule.vue?vue&type=template&id=fcc3b1d6&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckupSchedule_vue_vue_type_template_id_fcc3b1d6_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckupSchedule_vue_vue_type_template_id_fcc3b1d6_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupScheduleBase.vue":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupScheduleBase.vue ***!
+  \************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CheckupScheduleBase_vue_vue_type_template_id_6cbc3b06_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CheckupScheduleBase.vue?vue&type=template&id=6cbc3b06&scoped=true& */ "./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupScheduleBase.vue?vue&type=template&id=6cbc3b06&scoped=true&");
+/* harmony import */ var _CheckupScheduleBase_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CheckupScheduleBase.vue?vue&type=script&lang=js& */ "./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupScheduleBase.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CheckupScheduleBase_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CheckupScheduleBase_vue_vue_type_template_id_6cbc3b06_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CheckupScheduleBase_vue_vue_type_template_id_6cbc3b06_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "6cbc3b06",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupScheduleBase.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupScheduleBase.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************!*\
+  !*** ./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupScheduleBase.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckupScheduleBase_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./CheckupScheduleBase.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupScheduleBase.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckupScheduleBase_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupScheduleBase.vue?vue&type=template&id=6cbc3b06&scoped=true&":
+/*!*******************************************************************************************************************************************!*\
+  !*** ./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupScheduleBase.vue?vue&type=template&id=6cbc3b06&scoped=true& ***!
+  \*******************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckupScheduleBase_vue_vue_type_template_id_6cbc3b06_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./CheckupScheduleBase.vue?vue&type=template&id=6cbc3b06&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupScheduleBase.vue?vue&type=template&id=6cbc3b06&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckupScheduleBase_vue_vue_type_template_id_6cbc3b06_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckupScheduleBase_vue_vue_type_template_id_6cbc3b06_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupSchedules.vue":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupSchedules.vue ***!
+  \*********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CheckupSchedules_vue_vue_type_template_id_945b46a4_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CheckupSchedules.vue?vue&type=template&id=945b46a4&scoped=true& */ "./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupSchedules.vue?vue&type=template&id=945b46a4&scoped=true&");
+/* harmony import */ var _CheckupSchedules_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CheckupSchedules.vue?vue&type=script&lang=js& */ "./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupSchedules.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CheckupSchedules_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CheckupSchedules_vue_vue_type_template_id_945b46a4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CheckupSchedules_vue_vue_type_template_id_945b46a4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "945b46a4",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupSchedules.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupSchedules.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************!*\
+  !*** ./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupSchedules.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckupSchedules_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./CheckupSchedules.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupSchedules.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckupSchedules_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupSchedules.vue?vue&type=template&id=945b46a4&scoped=true&":
+/*!****************************************************************************************************************************************!*\
+  !*** ./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupSchedules.vue?vue&type=template&id=945b46a4&scoped=true& ***!
+  \****************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckupSchedules_vue_vue_type_template_id_945b46a4_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./CheckupSchedules.vue?vue&type=template&id=945b46a4&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/system/modules/portal/admin/checkup-schedule/view/CheckupSchedules.vue?vue&type=template&id=945b46a4&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckupSchedules_vue_vue_type_template_id_945b46a4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckupSchedules_vue_vue_type_template_id_945b46a4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/system/modules/portal/admin/checkups/mutation-types.js":
 /*!*****************************************************************************!*\
   !*** ./resources/js/system/modules/portal/admin/checkups/mutation-types.js ***!
@@ -62597,7 +63889,7 @@ var actions = {
               commit = _ref4.commit;
               _context4.prev = 1;
               _context4.next = 4;
-              return _services_api_services__WEBPACK_IMPORTED_MODULE_2__["default"].patch(SUB_BASE_URL + data.id, data.data);
+              return _services_api_services__WEBPACK_IMPORTED_MODULE_2__["default"].patch(SUB_BASE_URL + "/".concat(data.id), data.data);
 
             case 4:
               response = _context4.sent;
@@ -63349,6 +64641,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_Portal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./views/Portal */ "./resources/js/system/views/Portal.vue");
 /* harmony import */ var _modules_portal_admin_users_routes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/portal/admin/users/routes */ "./resources/js/system/modules/portal/admin/users/routes.js");
 /* harmony import */ var _modules_portal_admin_checkups_routes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/portal/admin/checkups/routes */ "./resources/js/system/modules/portal/admin/checkups/routes.js");
+/* harmony import */ var _modules_portal_admin_checkup_schedule_routes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/portal/admin/checkup-schedule/routes */ "./resources/js/system/modules/portal/admin/checkup-schedule/routes.js");
+
 
 
 
@@ -63360,7 +64654,7 @@ var baseRoutes = [{
     requiresAuth: true
   }
 }];
-/* harmony default export */ __webpack_exports__["default"] = (baseRoutes.concat(_modules_portal_admin_users_routes__WEBPACK_IMPORTED_MODULE_1__["default"], _modules_portal_admin_checkups_routes__WEBPACK_IMPORTED_MODULE_2__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (baseRoutes.concat(_modules_portal_admin_users_routes__WEBPACK_IMPORTED_MODULE_1__["default"], _modules_portal_admin_checkups_routes__WEBPACK_IMPORTED_MODULE_2__["default"], _modules_portal_admin_checkup_schedule_routes__WEBPACK_IMPORTED_MODULE_3__["default"]));
 
 /***/ }),
 
@@ -63379,7 +64673,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_auth_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/auth.store */ "./resources/js/system/store/modules/auth.store.js");
 /* harmony import */ var _modules_portal_admin_users_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../modules/portal/admin/users/store */ "./resources/js/system/modules/portal/admin/users/store.js");
 /* harmony import */ var _modules_portal_admin_checkups_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../modules/portal/admin/checkups/store */ "./resources/js/system/modules/portal/admin/checkups/store.js");
-/* harmony import */ var _modules_base_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/base.store */ "./resources/js/system/store/modules/base.store.js");
+/* harmony import */ var _modules_portal_admin_checkup_schedule_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../modules/portal/admin/checkup-schedule/store */ "./resources/js/system/modules/portal/admin/checkup-schedule/store.js");
+/* harmony import */ var _modules_base_store__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/base.store */ "./resources/js/system/store/modules/base.store.js");
+
 
 
 
@@ -63389,10 +64685,11 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   modules: {
-    base: _modules_base_store__WEBPACK_IMPORTED_MODULE_5__["base"],
+    base: _modules_base_store__WEBPACK_IMPORTED_MODULE_6__["base"],
     auth: _modules_auth_store__WEBPACK_IMPORTED_MODULE_2__["auth"],
     users: _modules_portal_admin_users_store__WEBPACK_IMPORTED_MODULE_3__["users"],
-    checkups: _modules_portal_admin_checkups_store__WEBPACK_IMPORTED_MODULE_4__["checkups"]
+    checkups: _modules_portal_admin_checkups_store__WEBPACK_IMPORTED_MODULE_4__["checkups"],
+    checkupschedules: _modules_portal_admin_checkup_schedule_store__WEBPACK_IMPORTED_MODULE_5__["checkupschedules"]
   }
 }));
 

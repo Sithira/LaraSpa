@@ -33,7 +33,7 @@ class UserController extends Controller
      * @param UserRequest $request
      * @return UserResource
      */
-    public function store(UserRequest $request): UserResource
+    public function store(UserRequest $request)
     {
         $user = User::create($request->validated());
 

@@ -32,7 +32,7 @@ class CheckupScheduleController extends Controller
      * @param CheckupScheduleRequest $request
      * @return CheckupScheduleResource
      */
-    public function store(CheckupScheduleRequest $request) : CheckupScheduleResource
+    public function store(CheckupScheduleRequest $request)
     {
         $scheduleCheckup = CheckupSchedule::create($request->validated());
 
@@ -47,36 +47,36 @@ class CheckupScheduleController extends Controller
     }
 
     /**
+     *  Show a specific Checkup schedule.
      *
-     *
-     * @param CheckupSchedule $checkupSchedule
+     * @param CheckupSchedule $schedule
      * @return CheckupScheduleResource
      */
-    public function show(CheckupSchedule $checkupSchedule) : CheckupScheduleResource
+    public function show(CheckupSchedule $schedule)
     {
         return api_resource("admin\CheckupSchedule")
-            ->make($checkupSchedule);
+            ->make($schedule);
     }
 
     /**
      * @param CheckupScheduleRequest $request
-     * @param CheckupSchedule $checkupSchedule
+     * @param CheckupSchedule $schedule
      * @return CheckupScheduleResource
      */
-    public function update(CheckupScheduleRequest $request, CheckupSchedule $checkupSchedule) : CheckupScheduleResource
+    public function update(CheckupScheduleRequest $request, CheckupSchedule $schedule) : CheckupScheduleResource
     {
-        $status = $checkupSchedule->update($request->validated());
+        $status = $schedule->update($request->validated());
 
         if ($status) {
             return api_resource("admin\CheckupSchedule")
-                ->make($checkupSchedule);
+                ->make($schedule);
         }
 
         return response()->json(HTTPMessages::GENERIC_ERROR);
     }
 
     /**
-     * @param CheckupSchedule $checkupSchedule
+     * @param CheckupScheduleController $checkupSchedule
      */
     public function destroy(CheckupSchedule $checkupSchedule)
     {

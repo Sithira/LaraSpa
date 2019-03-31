@@ -67,7 +67,8 @@ class CheckupController extends Controller
         $status = $checkup->update($request->validated());
 
         if ($status) {
-            return api_resource("admin\Checkup")->make($status);
+            return api_resource("admin\Checkup")
+                ->make($checkup);
         }
 
         return response()->json(HTTPMessages::GENERIC_ERROR);

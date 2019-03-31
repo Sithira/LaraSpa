@@ -24,7 +24,11 @@ class CheckupScheduleRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'request_by' => 'required',
+            'user_id' => 'required',
+            'checkup_id' => 'required',
+            'diagnosed_date' => 'required|date',
+            'note' => 'nullable|min:5'
         ];
     }
 }

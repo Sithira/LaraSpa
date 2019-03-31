@@ -1,9 +1,8 @@
 <template>
-
     <div>
 
         <h3>
-            Checkups in system
+            Schedules in system
 
             <div class="float-right">
                 <!-- Button trigger modal -->
@@ -12,6 +11,7 @@
                 </button>
             </div>
         </h3>
+
         <div class="table-responsive">
 
             <table class="table table-bordered">
@@ -19,20 +19,23 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Action</th>
+                    <th>User id</th>
+                    <th>Request by</th>
+                    <th>Diagnosed Date</th>
+                    <th>Note</th>
+                    <th>Active</th>
                 </tr>
                 </thead>
 
                 <tbody>
-                <tr v-for="checkup in checkups">
-                    <td>{{ checkup.id }}</td>
-                    <td>{{ checkup.name }}</td>
-                    <td>{{ checkup.description || "N/A" }}</td>
+                <tr v-for="schedule in schedules">
+                    <td>{{ schedule.id }}</td>
+                    <td>{{ schedule.user_id }}</td>
+                    <td>{{ schedule.request_by }}</td>
+                    <td>{{ schedule.diagnosed_date || "N/A" }}</td>
+                    <td>{{ schedule.note || "N/A" }}</td>
                     <td>
-                        <router-link tag="a" class="btn btn-sm btn-primary"
-                                     :to="{ name: 'portal-admin-checkup', params: { id: checkup.id } }">
+                        <router-link tag="a" class="btn btn-sm btn-primary" :to="{ name: 'portal-admin-schedule', params: { id: schedule.id } }">
                             view
                         </router-link>
                     </td>
@@ -48,7 +51,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Edit Form - {{ checkup.name }} </h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Form - {{ schedule.id }} </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -56,13 +59,12 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name" v-model="checkup.name">
+                            <input type="text" class="form-control" id="name" v-model="schedule.name">
                         </div>
 
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <textarea id="description" name="description" class="form-control"
-                                      v-model="checkup.description">
+                            <textarea id="description" name="description" class="form-control"  v-model="schedule.description">
 
                             </textarea>
                         </div>
@@ -75,48 +77,28 @@
             </div>
         </div>
     </div>
-
 </template>
 
 <script>
     import {mapActions, mapGetters} from "vuex";
-    import swal from "sweetalert";
 
     export default {
-        name: "Checkups",
+        name: "CheckupSchedules",
         computed: {
-            ...mapGetters("checkups", [
-                "checkups",
-                "checkup"
+            ...mapGetters("checkupschedules", [
+                "schedules",
+                "schedule"
             ])
         },
         methods: {
-            ...mapActions("checkups", [
+            ...mapActions("checkupschedules", [
                 "all",
                 "store"
             ]),
             create() {
 
-                swal({
-                    title: 'Are you sure to create this ?',
-                    buttons: true,
-                    dangerMode: true
-                }).then((response) => {
-
-                    if (response) {
-                        this.store(this.checkup).then(() => {
-                            $("#store").modal('hide');
-                        }).catch(function (e) {
-                            console.log(e)
-                        });
-                    }
-
-                }).catch(() => {
-                    swal.stopLoading();
-                });
             }
         },
-
         mounted() {
             this.all();
         }

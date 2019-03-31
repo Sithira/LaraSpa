@@ -6,6 +6,7 @@
 
         <router-link tag="a" :to="{ name: 'portal-admin-users' }">Users</router-link>
         <router-link tag="a" :to="{ name: 'portal-admin-checkups' }">Checkups</router-link>
+        <router-link tag="a" :to="{ name: 'portal-admin-schedules' }">Schedules</router-link>
     </div>
 </template>
 
